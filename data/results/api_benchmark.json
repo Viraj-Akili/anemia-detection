@@ -1,0 +1,14 @@
+{
+  "endpoint": "http://127.0.0.1:8000/api/v1/anemia/screen",
+  "request_count": 50,
+  "successful_requests": 40,
+  "rejected_requests": 10,
+  "error_requests": 0,
+  "latency_stats_ms": {
+    "mean": 40.83,
+    "median": 46.32,
+    "p95": 55.1,
+    "min": 5.82,
+    "max": 60.78
+  }
+}

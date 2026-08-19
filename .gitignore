@@ -1,0 +1,33 @@
+# --- Secrets / env ----------------------------------------------------------
+.env
+.env.*
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Data (never commit downloaded datasets) ----------------------------------
+data/raw/
+data/processed/
+
+# --- Models (decide later whether small weights should be committed) ----------
+models/*.pt
+models/*.pth
+models/*.onnx
+!models/.gitkeep
+
+# --- Downloaded helper binaries (7-Zip bootstrap, etc.) ------------------------
+scripts/tools/
+
+# --- Notebooks / caches / IDE --------------------------------------------------
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.vscode/
+.idea/
+.DS_Store

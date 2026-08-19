@@ -1,0 +1,88 @@
+{
+  "total_files": 710,
+  "usable": 708,
+  "by_status": {
+    "ok": 708,
+    "label_conflict": 2
+  },
+  "rejected": [
+    {
+      "image": "Image_310",
+      "reason": "label_conflict",
+      "details": [
+        "identical content labeled ['anemic', 'non_anemic']"
+      ]
+    },
+    {
+      "image": "Image_188",
+      "reason": "label_conflict",
+      "details": [
+        "identical content labeled ['anemic', 'non_anemic']"
+      ]
+    }
+  ],
+  "duplicate_files": 212,
+  "image_dimensions": {
+    "unique": 451,
+    "most_common": [
+      {
+        "width": 301,
+        "height": 109,
+        "count": 12
+      },
+      {
+        "width": 292,
+        "height": 105,
+        "count": 10
+      },
+      {
+        "width": 430,
+        "height": 225,
+        "count": 10
+      },
+      {
+        "width": 246,
+        "height": 70,
+        "count": 9
+      },
+      {
+        "width": 220,
+        "height": 88,
+        "count": 9
+      },
+      {
+        "width": 111,
+        "height": 42,
+        "count": 9
+      },
+      {
+        "width": 238,
+        "height": 91,
+        "count": 8
+      },
+      {
+        "width": 237,
+        "height": 70,
+        "count": 7
+      },
+      {
+        "width": 210,
+        "height": 103,
+        "count": 7
+      },
+      {
+        "width": 198,
+        "height": 103,
+        "count": 7
+      }
+    ]
+  },
+  "channels": {
+    "4": 708
+  },
+  "class_counts": {
+    "anemic": 423,
+    "non_anemic": 285
+  },
+  "raw_root": "C:\\Users\\Viraj Akili\\OneDrive\\Desktop\\person1\\data\\raw\\cp-anemic"
+}

@@ -1,0 +1,47 @@
+{
+  "architecture": "mobilenet_v2",
+  "input_size": [
+    3,
+    224,
+    224
+  ],
+  "class_labels": [
+    "anemic",
+    "non_anemic"
+  ],
+  "training_seed": 42,
+  "preprocessing": [
+    "RGB",
+    "ImageNet normalize",
+    "224x224 white-padded crops"
+  ],
+  "augmentation": [
+    "RandomHorizontalFlip(0.5)",
+    "RandomRotation(10, fill=255)",
+    "RandomAffine(translate 0.05, scale 0.95-1.05, fill=255)",
+    "ColorJitter(brightness 0.15, contrast 0.15, no hue/saturation)"
+  ],
+  "loss": "BCEWithLogitsLoss (unweighted)",
+  "epochs_head": 8,
+  "epochs_finetune": 60,
+  "best_epoch": 48,
+  "validation": {
+    "stage": "finetune",
+    "epoch": 48,
+    "train_loss": 0.35248302641403245,
+    "accuracy": 0.7525773195876289,
+    "precision_anemic": 0.7017543859649122,
+    "recall_anemic": 0.851063829787234,
+    "f1_anemic": 0.7692307692307693,
+    "precision_non_anemic": 0.825,
+    "recall_non_anemic": 0.66,
+    "f1_non_anemic": 0.7333333333333333,
+    "roc_auc": 0.7497872340425531,
+    "n_samples": 97
+  },
+  "device": "cuda",
+  "model_version": "0.2.0-cnn",
+  "total_parameters": 2225153,
+  "torch_version": "2.12.1+cu130",
+  "python_version": "3.11.9"
+}
