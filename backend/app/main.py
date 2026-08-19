@@ -1,10 +1,40 @@
 from fastapi import FastAPI, Response
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 
 from .config import settings
 from .database import engine
+from .routers import (
+    beneficiaries_router,
+    screenings_router,
+    measurements_router,
+    results_router,
+    followups_router,
+    history_router,
+)
 
 app = FastAPI(title="PRAHARI Backend")
+
+# CORS for local frontend development (React on 3000, Vite on 5173)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(beneficiaries_router)
+app.include_router(screenings_router)
+app.include_router(measurements_router)
+app.include_router(results_router)
+app.include_router(followups_router)
+app.include_router(history_router)
 
 
 @app.get("/health")
