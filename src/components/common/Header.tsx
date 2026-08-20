@@ -15,7 +15,6 @@ import {
   Smartphone,
   Monitor,
   BookOpen,
-  HeartPulse,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -68,59 +67,61 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#064e3b] text-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-        {/* Brand & Logo */}
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-emerald-600 border border-emerald-400 flex items-center justify-center text-white font-bold text-lg shadow-sm">
-            <HeartPulse className="w-6 h-6 text-white" />
+    <header className="sticky top-0 z-40 apple-glass text-[#1d1d1f] border-b border-black/[0.06]">
+      <div className="max-w-[1240px] mx-auto px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+        
+        {/* Brand Wordmark & Sector Tag */}
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-[#1d1d1f] flex items-center justify-center text-white shadow-sm">
+            <Activity className="w-4 h-4 stroke-[2.5]" />
           </div>
           <div>
-            <div className="flex items-center space-x-2">
-              <h1 className="text-xl font-extrabold tracking-tight text-white font-sans">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-[17px] tracking-tight text-[#1d1d1f]">
                 {getTranslation(currentLanguage, 'appTitle')}
-              </h1>
-              <span className="px-2.5 py-0.5 text-[10px] uppercase font-bold rounded-full bg-emerald-800 text-emerald-200 border border-emerald-700">
-                Health Sentinel
+              </span>
+              <span className="px-2 py-0.5 text-[10px] uppercase font-semibold rounded-full bg-black/[0.05] text-[#6e6e73] tracking-wider">
+                WHO 2024 Sentinel
               </span>
             </div>
-            <p className="text-xs text-emerald-100 font-medium hidden sm:block">
-              Screening for anemia & malnutrition in mothers and children
+            <p className="text-[11px] text-[#86868b] font-normal hidden sm:block">
+              Point-of-care optical pallor & WHO growth screening
             </p>
           </div>
         </div>
 
-        {/* Role Switcher Tabs */}
-        <div className="flex items-center bg-[#043e2f] p-1 rounded-xl border border-emerald-800">
+        {/* Apple Segmented Role Switcher */}
+        <div className="flex items-center p-1 rounded-full bg-black/[0.05] border border-black/[0.04]">
           <button
             onClick={() => onRoleChange('aww')}
-            className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all ${
               currentRole === 'aww'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-emerald-200 hover:text-white'
+                ? 'bg-white text-[#1d1d1f] shadow-sm'
+                : 'text-[#6e6e73] hover:text-[#1d1d1f]'
             }`}
           >
             <UserCheck className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">Frontline Worker</span>
-            <span className="md:hidden">Worker</span>
+            <span>Frontline Worker</span>
           </button>
+
           <button
             onClick={() => onRoleChange('supervisor')}
-            className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all ${
               currentRole === 'supervisor'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-emerald-200 hover:text-white'
+                ? 'bg-white text-[#1d1d1f] shadow-sm'
+                : 'text-[#6e6e73] hover:text-[#1d1d1f]'
             }`}
           >
             <Activity className="w-3.5 h-3.5" />
             <span>Supervisor</span>
           </button>
+
           <button
             onClick={() => onRoleChange('district_admin')}
-            className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[12px] font-medium transition-all ${
               currentRole === 'district_admin'
-                ? 'bg-emerald-600 text-white shadow-sm'
-                : 'text-emerald-200 hover:text-white'
+                ? 'bg-white text-[#1d1d1f] shadow-sm'
+                : 'text-[#6e6e73] hover:text-[#1d1d1f]'
             }`}
           >
             <Building className="w-3.5 h-3.5" />
@@ -130,70 +131,69 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Toolbar Controls */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-2">
           {/* Hackathon Demo Presentation Button */}
           <button
             onClick={onStartDemoFlow}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold shadow-sm transition-all"
+            className="apple-btn-primary px-3.5 py-1.5 text-[12px] inline-flex items-center gap-1.5 cursor-pointer shadow-sm"
             title="Launch interactive presentation walkthrough"
           >
-            <Play className="w-3.5 h-3.5 fill-slate-950" />
-            <span className="hidden sm:inline">Hackathon Demo Flow</span>
+            <Play className="w-3 h-3 fill-current" />
+            <span className="hidden sm:inline">Demo Flow</span>
           </button>
 
           {/* Research Dossier Button */}
           <button
             onClick={onOpenResearchDossier}
-            className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-800 text-emerald-100 hover:bg-emerald-700 border border-emerald-600 transition-colors"
+            className="apple-btn-secondary px-3 py-1.5 text-[12px] inline-flex items-center gap-1.5"
             title="Open Research & Literature Dossier"
           >
-            <BookOpen className="w-3.5 h-3.5 text-emerald-200" />
-            <span className="hidden xl:inline">Research Dossier 📚</span>
+            <BookOpen className="w-3.5 h-3.5 text-[#00776b]" />
+            <span className="hidden xl:inline">Research Dossier</span>
           </button>
 
-          {/* Mobile Viewport Toggle */}
+          {/* Mobile Simulation Toggle */}
           <button
             onClick={onToggleMobileSimulated}
-            className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+            className={`p-2 rounded-full border transition-all ${
               isMobileSimulated
-                ? 'bg-emerald-700 border-emerald-500 text-white shadow-sm'
-                : 'bg-[#043e2f] border-emerald-800 text-emerald-200 hover:text-white'
+                ? 'bg-[#1d1d1f] border-[#1d1d1f] text-white shadow-sm'
+                : 'bg-white border-black/[0.08] text-[#6e6e73] hover:text-[#1d1d1f]'
             }`}
-            title="Toggle Mobile Smartphone Device View"
+            title="Toggle Mobile Viewport Simulation"
           >
-            {isMobileSimulated ? <Smartphone className="w-4 h-4 text-emerald-200" /> : <Monitor className="w-4 h-4" />}
-            <span className="hidden lg:inline">{isMobileSimulated ? 'Mobile View 📱' : 'Desktop View 💻'}</span>
+            {isMobileSimulated ? <Smartphone className="w-3.5 h-3.5" /> : <Monitor className="w-3.5 h-3.5" />}
           </button>
 
-          {/* Model API Contract Inspector */}
+          {/* Model AI Contract Inspector */}
           <button
             onClick={onOpenModelContract}
-            className="p-1.5 rounded-lg text-emerald-200 hover:text-white hover:bg-emerald-800 border border-emerald-800 transition-colors"
+            className="p-2 rounded-full bg-white border border-black/[0.08] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors"
             title="Inspect AI Model Contract"
           >
-            <Cpu className="w-4 h-4" />
+            <Cpu className="w-3.5 h-3.5" />
           </button>
 
           {/* Reset Demo Data */}
           <button
             onClick={onResetDemoData}
-            className="p-1.5 rounded-lg text-emerald-200 hover:text-amber-300 hover:bg-emerald-800 border border-emerald-800 transition-colors"
-            title="Reset Demo Beneficiaries Data"
+            className="p-2 rounded-full bg-white border border-black/[0.08] text-[#6e6e73] hover:text-amber-600 transition-colors"
+            title="Reset Demo Data"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3.5 h-3.5" />
           </button>
 
-          {/* Offline Mode Switcher */}
+          {/* Offline Mode Indicator */}
           <button
             onClick={toggleOffline}
-            className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium border transition-all ${
               isOffline
-                ? 'bg-amber-950/90 border-amber-800 text-amber-300'
-                : 'bg-emerald-950/90 border-emerald-800 text-emerald-300'
+                ? 'bg-amber-50 border-amber-200 text-amber-800'
+                : 'bg-emerald-50 border-emerald-200 text-emerald-800'
             }`}
             title="Toggle Offline mode simulation"
           >
-            {isOffline ? <WifiOff className="w-3.5 h-3.5 text-amber-400" /> : <Wifi className="w-3.5 h-3.5 text-emerald-400" />}
+            {isOffline ? <WifiOff className="w-3 h-3 text-amber-600" /> : <Wifi className="w-3 h-3 text-emerald-600" />}
             <span className="hidden sm:inline">{isOffline ? 'Offline' : 'Online'}</span>
           </button>
 
@@ -201,53 +201,42 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={handleManualSync}
             disabled={isOffline || syncQueue.length === 0}
-            className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
-              syncQueue.length > 0
-                ? 'bg-emerald-800 border-emerald-600 text-white'
-                : 'bg-[#043e2f] border-emerald-800 text-emerald-200'
-            }`}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-black/[0.04] text-[#6e6e73] border border-black/[0.04]"
           >
             <span
-              className={`w-2 h-2 rounded-full ${
+              className={`w-1.5 h-1.5 rounded-full ${
                 isSyncing
-                  ? 'bg-emerald-300 animate-ping'
+                  ? 'bg-emerald-500 animate-ping'
                   : syncQueue.length > 0
-                  ? 'bg-amber-400'
-                  : 'bg-emerald-400'
+                  ? 'bg-amber-500'
+                  : 'bg-emerald-500'
               }`}
             />
             <span className="hidden sm:inline">
               {isSyncing
-                ? getTranslation(currentLanguage, 'syncing')
+                ? 'Syncing...'
                 : syncQueue.length > 0
-                ? `${syncQueue.length} ${getTranslation(currentLanguage, 'offline')}`
-                : getTranslation(currentLanguage, 'synced')}
+                ? `${syncQueue.length} queued`
+                : 'Synced'}
             </span>
           </button>
 
           {/* Language Selector */}
-          <div className="flex items-center bg-[#043e2f] rounded-lg border border-emerald-800 px-2 py-1">
-            <Globe className="w-3.5 h-3.5 text-emerald-300 mr-1.5" />
+          <div className="flex items-center bg-white rounded-full border border-black/[0.08] px-2.5 py-1">
+            <Globe className="w-3 h-3 text-[#86868b] mr-1.5" />
             <select
               value={currentLanguage}
               onChange={(e) => onLanguageChange(e.target.value as Language)}
-              className="bg-transparent text-xs text-white font-semibold focus:outline-none cursor-pointer"
+              className="bg-transparent text-[11px] text-[#1d1d1f] font-medium focus:outline-none cursor-pointer"
             >
-              <option value="en" className="bg-[#043e2f] text-white">
-                English
-              </option>
-              <option value="hi" className="bg-[#043e2f] text-white">
-                हिंदी (HI)
-              </option>
-              <option value="ta" className="bg-[#043e2f] text-white">
-                தமிழ் (TA)
-              </option>
-              <option value="mr" className="bg-[#043e2f] text-white">
-                मराठी (MR)
-              </option>
+              <option value="en">English</option>
+              <option value="hi">हिंदी (HI)</option>
+              <option value="ta">தமிழ் (TA)</option>
+              <option value="mr">मराठी (MR)</option>
             </select>
           </div>
         </div>
+
       </div>
     </header>
   );

@@ -21,57 +21,66 @@ export const FollowUpList: React.FC<FollowUpListProps> = ({
   );
 
   return (
-    <div className="space-y-5 max-w-4xl mx-auto pb-12">
+    <div className="space-y-6 max-w-[1040px] mx-auto pb-16">
+      
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white">Scheduled Follow-Ups & Referrals</h2>
-          <p className="text-xs text-slate-400">
-            {followUpQueue.length} priority beneficiaries due for re-screening or PHC confirmation
+          <div className="flex items-center gap-2 text-[#00776b] text-[12px] font-semibold mb-1">
+            <Clock className="w-4 h-4" />
+            <span>Community Care Protocol</span>
+          </div>
+          <h2 className="text-[28px] sm:text-[34px] font-semibold text-[#1d1d1f] tracking-title">
+            Scheduled Follow-Ups & Referrals
+          </h2>
+          <p className="text-[14px] text-[#6e6e73]">
+            {followUpQueue.length} priority beneficiaries due for re-screening or primary health centre review
           </p>
         </div>
       </div>
 
-      <div className="space-y-3">
+      {/* Queue List Cards */}
+      <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-black/[0.06] shadow-sm space-y-3">
         {followUpQueue.map((beneficiary) => (
           <div
             key={beneficiary.id}
             onClick={() => onSelectBeneficiary(beneficiary)}
-            className="bg-slate-900 hover:bg-slate-850 border border-slate-800 rounded-2xl p-5 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 group"
+            className="p-5 rounded-2xl bg-[#fbfbfd] hover:bg-[#f5f5f7] border border-black/[0.04] transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 group"
           >
             <div className="space-y-1.5">
-              <div className="flex items-center space-x-2">
-                <span className="font-bold text-white text-base group-hover:text-cyan-300">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="font-semibold text-[#1d1d1f] text-[16px] group-hover:text-[#00776b] transition-colors">
                   {beneficiary.name}
                 </span>
-                <span className="text-xs text-slate-400">
-                  ({beneficiary.category === 'child' ? `Child, Age ${beneficiary.ageYears}` : `Pregnant Woman, Trimester ${beneficiary.trimester}`})
+                <span className="text-[12px] text-[#86868b]">
+                  ({beneficiary.category === 'child' ? `Child, Age ${beneficiary.ageYears}y` : `Pregnant Woman, Trimester ${beneficiary.trimester}`})
                 </span>
               </div>
-              <div className="text-xs text-slate-400">
-                Village: <span className="text-slate-200">{beneficiary.locationVillage}</span> • Guardian:{' '}
-                <span className="text-slate-200">{beneficiary.guardianName}</span>
+              <div className="text-[12px] text-[#6e6e73]">
+                Village: <strong className="text-[#1d1d1f]">{beneficiary.locationVillage}</strong> • Guardian:{' '}
+                <strong className="text-[#1d1d1f]">{beneficiary.guardianName}</strong>
               </div>
-              <div className="text-xs text-amber-300 font-medium">
-                Last Action: {beneficiary.visitHistory?.[beneficiary.visitHistory.length - 1]?.recommendedAction || 'Follow-up recommended'}
+              <div className="text-[12px] text-[#00776b] font-medium">
+                Action: {beneficiary.visitHistory?.[beneficiary.visitHistory.length - 1]?.recommendedAction || '14-Day nutritional review'}
               </div>
             </div>
 
-            <div className="flex items-center space-x-3 self-end sm:self-auto">
+            <div className="flex items-center gap-4 self-end sm:self-auto">
               <div className="text-right">
-                <div className="flex items-center space-x-1.5 justify-end">
-                  <span className="text-xs text-slate-400">Priority:</span>
+                <div className="flex items-center gap-1.5 justify-end">
+                  <span className="text-[11px] text-[#86868b]">Priority:</span>
                   <span
-                    className={`px-2.5 py-0.5 text-xs font-bold rounded-md ${
+                    className={`px-2.5 py-0.5 text-[11px] font-semibold rounded-full ${
                       beneficiary.overallPriority === 'HIGH'
-                        ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                        : 'bg-amber-950 text-amber-300 border border-amber-800'
+                        ? 'bg-red-50 text-red-800 border border-red-200'
+                        : 'bg-amber-50 text-amber-800 border border-amber-200'
                     }`}
                   >
                     {beneficiary.overallPriority}
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-400 mt-1">
-                  Trajectory: <span className="text-cyan-400">{beneficiary.trajectory.replace('_', ' ')}</span>
+                <div className="text-[11px] text-[#86868b] mt-0.5">
+                  Trajectory: <span className="font-medium text-[#1d1d1f]">{beneficiary.trajectory.replace('_', ' ')}</span>
                 </div>
               </div>
 
@@ -80,14 +89,15 @@ export const FollowUpList: React.FC<FollowUpListProps> = ({
                   e.stopPropagation();
                   onStartScreening(beneficiary);
                 }}
-                className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold shadow-sm"
+                className="apple-btn-accent px-4 py-2 text-[12px] font-medium shadow-sm"
               >
-                Perform Follow-Up →
+                Perform Screening
               </button>
             </div>
           </div>
         ))}
       </div>
+
     </div>
   );
 };

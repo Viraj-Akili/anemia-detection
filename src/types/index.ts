@@ -4,7 +4,7 @@ export type Language = 'en' | 'hi' | 'ta' | 'mr';
 
 export type Gender = 'Male' | 'Female' | 'Other';
 
-export type Category = 'child' | 'pregnant';
+export type Category = 'child' | 'adult' | 'pregnant' | 'elderly';
 
 export type AnemiaRiskLevel = 'LOW' | 'MODERATE' | 'ELEVATED';
 export type NutritionRiskLevel = 'LOW' | 'MODERATE' | 'HIGH';

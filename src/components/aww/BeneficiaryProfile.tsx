@@ -9,9 +9,11 @@ import {
   TrendingDown,
   TrendingUp,
   Minus,
-  PlusCircle,
+  Plus,
   ShieldCheck,
-  CreditCard,
+  ChevronRight,
+  Eye,
+  Ruler,
 } from 'lucide-react';
 import {
   LineChart,
@@ -49,84 +51,87 @@ export const BeneficiaryProfile: React.FC<BeneficiaryProfileProps> = ({
   const getTrajectoryIcon = (state: string) => {
     switch (state) {
       case 'IMPROVING':
-        return <TrendingUp className="w-4 h-4 text-emerald-400" />;
+        return <TrendingUp className="w-4 h-4 text-emerald-600" />;
       case 'DECLINING':
       case 'RAPIDLY_DECLINING':
-        return <TrendingDown className="w-4 h-4 text-rose-400" />;
+        return <TrendingDown className="w-4 h-4 text-red-600" />;
       default:
-        return <Minus className="w-4 h-4 text-cyan-400" />;
+        return <Minus className="w-4 h-4 text-[#00776b]" />;
     }
   };
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto pb-12">
+    <div className="space-y-6 max-w-[1040px] mx-auto pb-16">
+      
       {/* Back Button */}
       <button
         onClick={onBack}
-        className="flex items-center space-x-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+        className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#6e6e73] hover:text-[#1d1d1f] transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Beneficiary Registry</span>
       </button>
 
-      {/* Official RCH & Poshan Health Card Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3 text-xs text-slate-400">
-          <div className="flex items-center space-x-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span className="font-semibold text-slate-200">RCH Digital Health Record • Ministry of Health & Family Welfare</span>
+      {/* Profile Health Card Header */}
+      <div className="bg-white border border-black/[0.06] rounded-[32px] p-8 shadow-sm space-y-6">
+        <div className="flex items-center justify-between border-b border-black/[0.06] pb-4 text-[12px] text-[#86868b]">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#00776b]" />
+            <span className="font-medium text-[#1d1d1f]">RCH Digital Health Record • Verified ABHA ID</span>
           </div>
           {beneficiary.abhaId && (
-            <span className="font-mono text-emerald-400 bg-slate-950 px-2.5 py-1 rounded-md border border-emerald-900 font-semibold">
+            <span className="font-mono text-[#1d1d1f] bg-[#f5f5f7] px-3 py-1 rounded-full text-[11px] font-medium">
               {beneficiary.abhaId}
             </span>
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center space-x-2 flex-wrap">
-              <h2 className="text-2xl font-bold text-white tracking-tight">{beneficiary.name}</h2>
-              <span className="px-2.5 py-0.5 text-xs font-semibold rounded bg-slate-800 text-slate-300 border border-slate-700">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="flex items-center gap-3 flex-wrap">
+              <h2 className="text-[32px] font-semibold text-[#1d1d1f] tracking-title">{beneficiary.name}</h2>
+              <span className="px-3 py-1 text-[12px] font-medium rounded-full bg-black/[0.05] text-[#1d1d1f]">
                 {beneficiary.category === 'child'
-                  ? `Age ${beneficiary.ageYears} yrs • ${beneficiary.sex}`
-                  : `Pregnant Woman • Trimester ${beneficiary.trimester}`}
+                  ? `Age ${beneficiary.ageYears}y • ${beneficiary.sex || 'Child'}`
+                  : `Maternal ANC • Trimester ${beneficiary.trimester}`}
               </span>
               {beneficiary.isDemoData && (
-                <span className="px-2 py-0.5 text-[9px] uppercase font-bold rounded bg-amber-950 text-amber-300 border border-amber-800">
-                  DEMO DATA
+                <span className="px-2.5 py-0.5 text-[9px] uppercase font-semibold rounded-full bg-black/[0.05] text-[#6e6e73]">
+                  DEMO
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-400">
-              RCH Number: <span className="font-mono text-slate-300">{beneficiary.rchId || 'RCH-10928471920'}</span> • Village:{' '}
-              <span className="text-slate-200 font-medium">{beneficiary.locationVillage}</span> • Guardian:{' '}
-              <span className="text-slate-200 font-medium">{beneficiary.guardianName}</span> • AWC ID:{' '}
-              <span className="font-mono text-slate-300">{beneficiary.anganwadiCentreId}</span>
-            </p>
+
+            <div className="flex items-center gap-4 text-[13px] text-[#6e6e73] flex-wrap">
+              <span>Guardian: <strong className="text-[#1d1d1f]">{beneficiary.guardianName}</strong></span>
+              <span>•</span>
+              <span>Village: <strong className="text-[#1d1d1f]">{beneficiary.locationVillage}</strong></span>
+              <span>•</span>
+              <span>Phone: <strong className="text-[#1d1d1f]">{beneficiary.phone || 'N/A'}</strong></span>
+            </div>
           </div>
 
           <button
             onClick={() => onStartScreening(beneficiary)}
-            className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs border border-slate-700 shadow-sm"
+            className="apple-btn-accent px-6 py-3.5 text-[14px] inline-flex items-center justify-center gap-2 shadow-sm self-start md:self-auto"
           >
-            <PlusCircle className="w-4 h-4" />
-            <span>Perform Guided Screening</span>
+            <Plus className="w-4 h-4 stroke-[2.5]" />
+            <span>Start Screening Workflow</span>
           </button>
         </div>
 
-        {/* 3 Official Risk Badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
-            <div className="text-xs text-slate-400 font-medium">Anemia Risk Classification</div>
-            <div className="flex items-center space-x-2">
+        {/* Current Health Metrics Row */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-black/[0.06]">
+          <div className="bg-[#fbfbfd] p-4 rounded-2xl border border-black/[0.04]">
+            <span className="text-[11px] text-[#86868b] uppercase font-medium">Anemia Status</span>
+            <div className="flex items-center gap-2 mt-1">
               <span
-                className={`px-3 py-1 text-xs font-extrabold rounded-lg ${
+                className={`px-2.5 py-0.5 text-[12px] font-semibold rounded-full ${
                   beneficiary.anemiaRisk === 'ELEVATED'
-                    ? 'bg-rose-950 text-rose-300 border border-rose-800'
+                    ? 'bg-red-50 text-red-800 border border-red-200'
                     : beneficiary.anemiaRisk === 'MODERATE'
-                    ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                    : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                    ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                    : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                 }`}
               >
                 {beneficiary.anemiaRisk}
@@ -134,142 +139,108 @@ export const BeneficiaryProfile: React.FC<BeneficiaryProfileProps> = ({
             </div>
           </div>
 
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
-            <div className="text-xs text-slate-400 font-medium">Nutrition Risk Classification</div>
-            <div className="flex items-center space-x-2">
-              <span
-                className={`px-3 py-1 text-xs font-extrabold rounded-lg ${
-                  beneficiary.nutritionRisk === 'HIGH'
-                    ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                    : beneficiary.nutritionRisk === 'MODERATE'
-                    ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                    : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                }`}
-              >
-                {beneficiary.nutritionRisk}
-              </span>
-            </div>
+          <div className="bg-[#fbfbfd] p-4 rounded-2xl border border-black/[0.04]">
+            <span className="text-[11px] text-[#86868b] uppercase font-medium">Nutrition Risk</span>
+            <p className="text-[16px] font-semibold text-[#1d1d1f] mt-1">{beneficiary.nutritionRisk}</p>
           </div>
 
-          <div className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
-            <div className="text-xs text-slate-400 font-medium">Longitudinal Risk Trajectory</div>
-            <div className="flex items-center space-x-2">
+          <div className="bg-[#fbfbfd] p-4 rounded-2xl border border-black/[0.04]">
+            <span className="text-[11px] text-[#86868b] uppercase font-medium">Trajectory</span>
+            <div className="flex items-center gap-1.5 mt-1 font-semibold text-[14px] text-[#1d1d1f]">
               {getTrajectoryIcon(beneficiary.trajectory)}
-              <span className="text-sm font-bold text-white">
-                {beneficiary.trajectory.replace('_', ' ')}
-              </span>
+              <span>{beneficiary.trajectory.replace('_', ' ')}</span>
             </div>
           </div>
-        </div>
-      </div>
 
-      <SafetyDisclaimerBanner language={language} />
-
-      {/* WHO / Poshan Standard Growth Chart */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Activity className="w-5 h-5 text-cyan-400" />
-            <h3 className="text-base font-bold text-white">WHO / Poshan Tracker Growth & MUAC Chart</h3>
-          </div>
-          <span className="text-xs text-slate-400 font-medium">Across {history.length} Sequential Visits</span>
-        </div>
-
-        <div className="h-56 w-full pt-2">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={growthChartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-              <XAxis dataKey="date" stroke="#64748b" fontSize={11} />
-              <YAxis yAxisId="left" stroke="#38bdf8" fontSize={11} />
-              <YAxis yAxisId="right" orientation="right" stroke="#f59e0b" fontSize={11} />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px' }}
-                itemStyle={{ fontSize: '12px' }}
-              />
-              <ReferenceLine yAxisId="right" y={11.5} stroke="#f43f5e" strokeDasharray="3 3" label={{ value: 'SAM Threshold 11.5cm', fill: '#f43f5e', fontSize: 10 }} />
-              <Line yAxisId="left" type="monotone" dataKey="weight" name="Weight (kg)" stroke="#38bdf8" strokeWidth={3} dot={{ r: 5 }} />
-              <Line yAxisId="right" type="monotone" dataKey="muac" name="MUAC (cm)" stroke="#f59e0b" strokeWidth={3} dot={{ r: 5 }} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="flex items-center justify-center space-x-6 text-xs text-slate-400">
-          <div className="flex items-center space-x-2">
-            <span className="w-3 h-3 rounded-full bg-cyan-400 inline-block" />
-            <span>Weight (kg)</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="w-3 h-3 rounded-full bg-amber-400 inline-block" />
-            <span>MUAC (cm)</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="w-3 border-b-2 border-rose-500 inline-block" />
-            <span>WHO SAM Cutoff (11.5 cm)</span>
+          <div className="bg-[#fbfbfd] p-4 rounded-2xl border border-black/[0.04]">
+            <span className="text-[11px] text-[#86868b] uppercase font-medium">Last Visit</span>
+            <p className="text-[16px] font-semibold text-[#1d1d1f] mt-1 font-mono">
+              {beneficiary.lastVisitDate || 'First Visit'}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* RCH Official Screening Timeline */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-        <div className="flex items-center space-x-2">
-          <Calendar className="w-5 h-5 text-purple-400" />
-          <h3 className="text-base font-bold text-white">Official RCH Visit History Timeline</h3>
+      {/* Longitudinal Growth & MUAC Trajectory Chart */}
+      {growthChartData.length > 0 && (
+        <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-black/[0.06] shadow-sm space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-[18px] font-semibold text-[#1d1d1f]">
+                Longitudinal MUAC & Weight Trajectory
+              </h3>
+              <p className="text-[13px] text-[#6e6e73]">
+                Monitored against WHO Child Growth Standards across visit history
+              </p>
+            </div>
+            <span className="px-3 py-1 rounded-full text-[11px] font-medium bg-[#f5f5f7] text-[#6e6e73]">
+              {growthChartData.length} Recorded Visits
+            </span>
+          </div>
+
+          <div className="h-64 w-full pt-4">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={growthChartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f2" />
+                <XAxis dataKey="date" stroke="#86868b" fontSize={12} tickLine={false} />
+                <YAxis stroke="#86868b" fontSize={12} domain={[10, 16]} tickLine={false} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(0,0,0,0.08)',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                  }}
+                />
+                <ReferenceLine y={11.5} stroke="#ef4444" strokeDasharray="3 3" label={{ value: 'SAM (11.5cm)', fill: '#ef4444', fontSize: 10 }} />
+                <ReferenceLine y={12.5} stroke="#f59e0b" strokeDasharray="3 3" label={{ value: 'MAM (12.5cm)', fill: '#f59e0b', fontSize: 10 }} />
+                <Line type="monotone" dataKey="muac" stroke="#00776b" strokeWidth={3} dot={{ r: 4, fill: '#00776b' }} name="MUAC (cm)" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
+      )}
 
-        <div className="space-y-4 border-l-2 border-slate-800 pl-4 ml-2">
-          {history.map((visit, idx) => (
-            <div key={visit.id || idx} className="relative space-y-2 group">
-              <div className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full bg-cyan-500 border-2 border-slate-900" />
-
-              <div className="bg-slate-950 p-4 rounded-xl border border-slate-800/80 space-y-2">
-                <div className="flex items-center justify-between flex-wrap gap-2">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-xs font-bold text-cyan-400">{visit.date}</span>
-                    <span className="text-xs text-slate-500">Official Checkup #{idx + 1}</span>
-                  </div>
-
-                  <div className="flex items-center space-x-2">
-                    <span className="text-xs text-slate-400">Anemia Risk:</span>
+      {/* Historical Visit Records */}
+      <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-black/[0.06] shadow-sm space-y-4">
+        <h3 className="text-[18px] font-semibold text-[#1d1d1f]">Visit Screening History</h3>
+        
+        {history.length === 0 ? (
+          <p className="text-[14px] text-[#86868b] py-8 text-center">No screening visits recorded yet.</p>
+        ) : (
+          <div className="space-y-3">
+            {history.map((visit, idx) => (
+              <div
+                key={visit.id || idx}
+                className="p-5 rounded-2xl bg-[#fbfbfd] border border-black/[0.04] flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              >
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-[#1d1d1f] text-[15px]">{visit.date}</span>
                     <span
-                      className={`px-2 py-0.5 text-[11px] font-bold rounded ${
+                      className={`px-2 py-0.5 text-[10px] font-bold rounded-full ${
                         visit.anemiaRisk === 'ELEVATED'
-                          ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                          : visit.anemiaRisk === 'MODERATE'
-                          ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                          : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                          ? 'bg-red-50 text-red-800'
+                          : 'bg-emerald-50 text-emerald-800'
                       }`}
                     >
-                      {visit.anemiaRisk}
+                      {visit.anemiaRisk} Risk
                     </span>
                   </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-2 text-xs text-slate-300 bg-slate-900/60 p-2.5 rounded-lg border border-slate-800">
-                  <div>
-                    Weight: <span className="font-bold text-white">{visit.weightKg} kg</span>
-                  </div>
-                  <div>
-                    Height: <span className="font-bold text-white">{visit.heightCm} cm</span>
-                  </div>
-                  <div>
-                    MUAC: <span className="font-bold text-amber-300">{visit.muacCm} cm</span>
-                  </div>
-                </div>
-
-                <p className="text-xs text-slate-300 leading-relaxed font-medium">
-                  <span className="text-slate-400">Action Issued:</span> {visit.recommendedAction}
-                </p>
-
-                {visit.notes && (
-                  <p className="text-[11px] text-slate-400 italic bg-slate-900/40 p-2 rounded">
-                    Field Notes: {visit.notes}
+                  <p className="text-[13px] text-[#6e6e73] mt-1">
+                    MUAC: <strong className="text-[#1d1d1f]">{visit.muacCm} cm</strong> • Weight: <strong className="text-[#1d1d1f]">{visit.weightKg} kg</strong> • Action: {visit.recommendedAction}
                   </p>
-                )}
+                </div>
+
+                <div className="text-[12px] text-[#86868b] font-mono">
+                  {visit.imageQuality}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
+
     </div>
   );
 };

@@ -126,7 +126,7 @@ export class ScreeningService {
     const safetyRules: string[] = [];
     let nutritionRisk: NutritionRiskLevel = 'LOW';
 
-    // MUAC evaluation for children
+    // 1. Child Anthropometry (6–59 months)
     if (beneficiary.category === 'child') {
       if (anthropometry.muacCm < 11.5) {
         nutritionRisk = 'HIGH';
@@ -134,16 +134,16 @@ export class ScreeningService {
           'CLINICAL RULE #1 (SAM Escalation): Child MUAC < 11.5 cm indicates Severe Acute Malnutrition requiring immediate medical officer referral.'
         );
         signals.push({
-          name: 'Mid-Upper Arm Circumference',
+          name: 'Pediatric MUAC',
           category: 'ANTHROPOMETRY',
           value: `${anthropometry.muacCm} cm (SAM Red Zone)`,
           impact: 'CONCERN',
-          description: 'MUAC measurement falls below the WHO 11.5 cm threshold.',
+          description: 'MUAC measurement falls below the WHO 11.5 cm pediatric cutoff.',
         });
       } else if (anthropometry.muacCm < 12.5) {
         nutritionRisk = 'MODERATE';
         signals.push({
-          name: 'Mid-Upper Arm Circumference',
+          name: 'Pediatric MUAC',
           category: 'ANTHROPOMETRY',
           value: `${anthropometry.muacCm} cm (MAM Yellow Zone)`,
           impact: 'CONCERN',
@@ -151,15 +151,15 @@ export class ScreeningService {
         });
       } else {
         signals.push({
-          name: 'Mid-Upper Arm Circumference',
+          name: 'Pediatric MUAC',
           category: 'ANTHROPOMETRY',
           value: `${anthropometry.muacCm} cm (Normal Green Zone)`,
           impact: 'POSITIVE',
-          description: 'MUAC is within healthy range (>= 12.5 cm).',
+          description: 'Pediatric MUAC is within healthy range (>= 12.5 cm).',
         });
       }
-    } else {
-      // Pregnant women MUAC evaluation
+    } else if (beneficiary.category === 'pregnant') {
+      // 2. Pregnant Women Anthropometry
       if (anthropometry.muacCm < 21.0) {
         nutritionRisk = 'HIGH';
         signals.push({
@@ -185,6 +185,41 @@ export class ScreeningService {
           value: `${anthropometry.muacCm} cm (Adequate)`,
           impact: 'POSITIVE',
           description: 'Maternal MUAC indicates adequate muscle mass.',
+        });
+      }
+    } else {
+      // 3. Adult & Elderly Anthropometry (BMI & Adult MUAC)
+      const heightM = anthropometry.heightCm > 0 ? anthropometry.heightCm / 100 : 1.65;
+      const bmi = anthropometry.weightKg > 0 ? anthropometry.weightKg / (heightM * heightM) : 21.0;
+
+      if (bmi < 16.0 || anthropometry.muacCm < 18.5) {
+        nutritionRisk = 'HIGH';
+        safetyRules.push(
+          'CLINICAL RULE #2 (Adult Severe Undernutrition): Adult BMI < 16.0 or MUAC < 18.5 cm indicates severe wasting.'
+        );
+        signals.push({
+          name: 'Adult BMI & Wasting',
+          category: 'ANTHROPOMETRY',
+          value: `BMI ${bmi.toFixed(1)} (Severe Undernutrition)`,
+          impact: 'CONCERN',
+          description: 'Significant somatic muscle and adipose tissue depletion.',
+        });
+      } else if (bmi < 18.5 || anthropometry.muacCm < 23.0) {
+        nutritionRisk = 'MODERATE';
+        signals.push({
+          name: 'Adult BMI',
+          category: 'ANTHROPOMETRY',
+          value: `BMI ${bmi.toFixed(1)} (Underweight)`,
+          impact: 'CONCERN',
+          description: 'Body Mass Index falls below the WHO normal threshold (18.5–24.9).',
+        });
+      } else {
+        signals.push({
+          name: 'Adult BMI',
+          category: 'ANTHROPOMETRY',
+          value: `BMI ${bmi.toFixed(1)} (Normal Range)`,
+          impact: 'POSITIVE',
+          description: 'Body Mass Index is within healthy WHO reference range.',
         });
       }
     }

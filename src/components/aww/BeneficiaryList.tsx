@@ -1,7 +1,7 @@
 import React from 'react';
 import { Beneficiary, Category, Gender, Language } from '../../types';
 import { getTranslation } from '../../services/localizationService';
-import { Search, Plus, User, Baby, HeartPulse, Filter, ShieldCheck } from 'lucide-react';
+import { Search, Plus, User, Baby, HeartPulse, Filter, ShieldCheck, ChevronRight, X } from 'lucide-react';
 
 interface BeneficiaryListProps {
   beneficiaries: Beneficiary[];
@@ -72,294 +72,274 @@ export const BeneficiaryList: React.FC<BeneficiaryListProps> = ({
   };
 
   return (
-    <div className="space-y-5 max-w-4xl mx-auto">
+    <div className="space-y-6 max-w-[1040px] mx-auto pb-16">
+      
       {/* Header Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-[#00776b] text-[12px] font-semibold mb-1">
             <ShieldCheck className="w-4 h-4" />
             <span>Anganwadi Centre #1049281 • Ramgarh Sector</span>
           </div>
-          <h2 className="text-xl font-bold text-white">Registered Beneficiaries Database</h2>
-          <p className="text-xs text-slate-400">
-            {beneficiaries.length} verified records linked with ABHA Health Accounts & RCH Registry
+          <h2 className="text-[28px] sm:text-[34px] font-semibold text-[#1d1d1f] tracking-title">
+            Beneficiary Registry
+          </h2>
+          <p className="text-[14px] text-[#6e6e73]">
+            {beneficiaries.length} verified community records linked with ABHA Health Accounts
           </p>
         </div>
 
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-xs font-bold shadow-sm"
+          className="apple-btn-accent px-5 py-3 text-[13px] inline-flex items-center gap-2 shadow-sm self-start sm:self-auto"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 stroke-[2.5]" />
           <span>Register New Beneficiary</span>
         </button>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div className="sm:col-span-2 relative">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+      <div className="flex flex-col sm:flex-row items-center gap-3">
+        <div className="w-full sm:flex-1 relative">
+          <Search className="w-4 h-4 text-[#86868b] absolute left-4 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search by beneficiary name, ABHA Number, guardian, or village..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+            placeholder="Search by name, guardian, village, or ABHA ID..."
+            className="w-full pl-11 pr-4 py-3 bg-white rounded-2xl border border-black/[0.08] text-[14px] text-[#1d1d1f] placeholder:text-[#86868b] focus:outline-none focus:ring-2 focus:ring-[#00776b]/20 focus:border-[#00776b] transition-all shadow-sm"
           />
         </div>
 
-        <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5">
-          <Filter className="w-3.5 h-3.5 text-slate-400 mr-2" />
-          <select
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value as any)}
-            className="bg-transparent text-xs text-slate-200 focus:outline-none cursor-pointer w-full font-semibold"
+        {/* Category Pill Controls */}
+        <div className="flex items-center p-1 rounded-2xl bg-black/[0.05] border border-black/[0.04] w-full sm:w-auto">
+          <button
+            onClick={() => setCategoryFilter('all')}
+            className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-[12px] font-medium transition-all ${
+              categoryFilter === 'all'
+                ? 'bg-white text-[#1d1d1f] shadow-sm'
+                : 'text-[#6e6e73] hover:text-[#1d1d1f]'
+            }`}
           >
-            <option value="all" className="bg-slate-900">
-              All Categories
-            </option>
-            <option value="child" className="bg-slate-900">
-              Children (0-6 yrs)
-            </option>
-            <option value="pregnant" className="bg-slate-900">
-              Pregnant Women (WRA)
-            </option>
-          </select>
+            All ({beneficiaries.length})
+          </button>
+          <button
+            onClick={() => setCategoryFilter('child')}
+            className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-[12px] font-medium transition-all ${
+              categoryFilter === 'child'
+                ? 'bg-white text-[#1d1d1f] shadow-sm'
+                : 'text-[#6e6e73] hover:text-[#1d1d1f]'
+            }`}
+          >
+            Children (6–59m)
+          </button>
+          <button
+            onClick={() => setCategoryFilter('pregnant')}
+            className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-[12px] font-medium transition-all ${
+              categoryFilter === 'pregnant'
+                ? 'bg-white text-[#1d1d1f] shadow-sm'
+                : 'text-[#6e6e73] hover:text-[#1d1d1f]'
+            }`}
+          >
+            Maternal ANC
+          </button>
         </div>
       </div>
 
-      {/* Beneficiaries Cards List */}
-      <div className="space-y-3">
-        {filtered.map((b) => (
-          <div
-            key={b.id}
-            onClick={() => onSelectBeneficiary(b)}
-            className="bg-slate-900 hover:bg-slate-850 border border-slate-800 rounded-2xl p-4 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 group shadow-sm"
-          >
-            <div className="flex items-start space-x-3">
-              <div
-                className={`w-10 h-10 rounded-xl flex items-center justify-center border shrink-0 mt-0.5 ${
-                  b.category === 'pregnant'
-                    ? 'bg-rose-950/60 text-rose-400 border-rose-800/80'
-                    : 'bg-slate-950 text-cyan-400 border-slate-800'
-                }`}
-              >
-                {b.category === 'pregnant' ? (
-                  <HeartPulse className="w-5 h-5" />
-                ) : (
-                  <Baby className="w-5 h-5" />
-                )}
-              </div>
-
-              <div className="space-y-1">
-                <div className="flex items-center space-x-2 flex-wrap gap-y-1">
-                  <span className="font-bold text-white text-base group-hover:text-cyan-300">
-                    {b.name}
-                  </span>
-                  <span className="px-2 py-0.5 text-[10px] font-semibold rounded bg-slate-800 text-slate-300 border border-slate-700">
-                    {b.category === 'child'
-                      ? `Child (${b.ageYears} yrs, ${b.sex})`
-                      : `Pregnant (Trimester ${b.trimester})`}
-                  </span>
-                  {b.abhaId && (
-                    <span className="px-2 py-0.5 text-[10px] font-mono font-medium rounded bg-slate-950 text-emerald-400 border border-emerald-900">
-                      {b.abhaId}
-                    </span>
+      {/* Beneficiaries List */}
+      <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-black/[0.06] shadow-sm space-y-3">
+        {filtered.length === 0 ? (
+          <div className="py-16 text-center text-[#86868b]">
+            <p className="text-[15px]">No beneficiary records found matching "{searchTerm}".</p>
+          </div>
+        ) : (
+          filtered.map((beneficiary) => (
+            <div
+              key={beneficiary.id}
+              onClick={() => onSelectBeneficiary(beneficiary)}
+              className="p-5 rounded-2xl bg-[#fbfbfd] hover:bg-[#f5f5f7] border border-black/[0.04] transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-2xl bg-white border border-black/[0.06] flex items-center justify-center text-[#1d1d1f] shadow-sm shrink-0">
+                  {beneficiary.category === 'child' ? (
+                    <Baby className="w-5 h-5 stroke-[1.75]" />
+                  ) : (
+                    <HeartPulse className="w-5 h-5 text-[#00776b] stroke-[1.75]" />
                   )}
                 </div>
-                <div className="text-xs text-slate-400">
-                  Village: <span className="text-slate-300 font-medium">{b.locationVillage}</span> • Guardian:{' '}
-                  <span className="text-slate-300 font-medium">{b.guardianName}</span> • AWC:{' '}
-                  <span className="text-slate-300 font-mono">{b.anganwadiCentreId}</span>
-                </div>
-                <div className="text-[11px] text-slate-500">
-                  Last Screened: {b.lastVisitDate} ({b.visitHistory?.length || 1} official records)
+
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-semibold text-[#1d1d1f] text-[16px] group-hover:text-[#00776b] transition-colors">
+                      {beneficiary.name}
+                    </span>
+                    <span className="text-[12px] text-[#86868b]">
+                      {beneficiary.category === 'child'
+                        ? `Age ${beneficiary.ageYears}y (${beneficiary.sex || 'Child'})`
+                        : `Maternal ANC • Trimester ${beneficiary.trimester}`}
+                    </span>
+                    {beneficiary.isDemoData && (
+                      <span className="px-2 py-0.5 text-[9px] font-medium rounded-full bg-black/[0.05] text-[#6e6e73]">
+                        DEMO
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-[12px] text-[#6e6e73] mt-0.5">
+                    Guardian: {beneficiary.guardianName} • Village: {beneficiary.locationVillage} • {beneficiary.abhaId}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right Risk Badges & Action */}
-            <div className="flex items-center space-x-3 self-end sm:self-auto">
-              <div className="text-right">
-                <div className="flex items-center space-x-1.5 justify-end">
-                  <span className="text-xs text-slate-400">Anemia Risk:</span>
+              <div className="flex items-center gap-3 self-end sm:self-auto">
+                <div className="text-right hidden sm:block">
                   <span
-                    className={`px-2.5 py-0.5 text-xs font-bold rounded-md ${
-                      b.anemiaRisk === 'ELEVATED'
-                        ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                        : b.anemiaRisk === 'MODERATE'
-                        ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                        : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                    className={`px-2.5 py-0.5 text-[11px] font-semibold rounded-full ${
+                      beneficiary.anemiaRisk === 'ELEVATED'
+                        ? 'bg-red-50 text-red-800 border border-red-200'
+                        : beneficiary.anemiaRisk === 'MODERATE'
+                        ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                        : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                     }`}
                   >
-                    {b.anemiaRisk}
+                    {beneficiary.anemiaRisk} Risk
                   </span>
+                  <p className="text-[11px] text-[#86868b] mt-0.5">
+                    Last: {beneficiary.lastVisitDate || 'Never'}
+                  </p>
                 </div>
-                <div className="text-[11px] text-slate-400 mt-1">
-                  Trajectory:{' '}
-                  <span className="text-cyan-400 font-semibold">
-                    {b.trajectory.replace('_', ' ')}
-                  </span>
-                </div>
-              </div>
 
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onStartScreening(b);
-                }}
-                className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold border border-slate-700"
-              >
-                Screen Now
-              </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onStartScreening(beneficiary);
+                  }}
+                  className="apple-btn-accent px-4 py-2 text-[12px] font-medium shadow-sm"
+                >
+                  Screen
+                </button>
+
+                <ChevronRight className="w-4 h-4 text-[#86868b] group-hover:text-[#1d1d1f] transition-transform group-hover:translate-x-0.5" />
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
-      {/* Register New Beneficiary Modal */}
+      {/* Apple-style Register Beneficiary Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl text-slate-100">
-            <div className="border-b border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-white">Register New Beneficiary</h3>
-              <p className="text-xs text-slate-400">Poshan Tracker & ABHA Registration Form</p>
+        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-[32px] p-8 max-w-lg w-full border border-black/[0.08] shadow-2xl space-y-6 animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-[20px] font-semibold text-[#1d1d1f]">Register New Beneficiary</h3>
+                <p className="text-[13px] text-[#6e6e73]">Add a mother or child to Anganwadi registry</p>
+              </div>
+              <button
+                onClick={() => setShowAddModal(false)}
+                className="p-2 rounded-full hover:bg-black/[0.05] text-[#86868b]"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            <form onSubmit={handleCreateSubmit} className="space-y-4">
+            <form onSubmit={handleCreateSubmit} className="space-y-4 text-left">
               <div>
-                <label className="text-xs text-slate-400 font-semibold">Category</label>
-                <div className="grid grid-cols-2 gap-2 mt-1">
-                  <button
-                    type="button"
-                    onClick={() => setCategory('child')}
-                    className={`py-2 text-xs font-bold rounded-xl border ${
-                      category === 'child'
-                        ? 'bg-slate-800 border-cyan-500 text-cyan-300'
-                        : 'bg-slate-950 border-slate-800 text-slate-400'
-                    }`}
-                  >
-                    Child (0-6 Years)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCategory('pregnant')}
-                    className={`py-2 text-xs font-bold rounded-xl border ${
-                      category === 'pregnant'
-                        ? 'bg-rose-950 border-rose-500 text-rose-300'
-                        : 'bg-slate-950 border-slate-800 text-slate-400'
-                    }`}
-                  >
-                    Pregnant Woman
-                  </button>
-                </div>
-              </div>
-
-              <div>
-                <label className="text-xs text-slate-400 font-semibold">Full Name (as per Aadhaar / ABHA)</label>
+                <label className="text-[12px] font-semibold text-[#1d1d1f] block mb-1">Full Name</label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Aarav Sharma"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full mt-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
+                  placeholder="e.g. Priya Sharma"
+                  className="w-full px-4 py-2.5 rounded-xl border border-black/[0.1] text-[14px] focus:outline-none focus:border-[#00776b]"
                 />
               </div>
-
-              <div>
-                <label className="text-xs text-slate-400 font-semibold">ABHA Health ID (Optional)</label>
-                <input
-                  type="text"
-                  placeholder="e.g. ABHA 91-4829-1029-3841"
-                  value={abhaId}
-                  onChange={(e) => setAbhaId(e.target.value)}
-                  className="w-full mt-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-emerald-400 font-mono"
-                />
-              </div>
-
-              {category === 'child' ? (
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="text-xs text-slate-400 font-semibold">Age (Years)</label>
-                    <input
-                      type="number"
-                      min={0}
-                      max={6}
-                      value={ageYears}
-                      onChange={(e) => setAgeYears(Number(e.target.value))}
-                      className="w-full mt-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-slate-400 font-semibold">Sex</label>
-                    <select
-                      value={sex}
-                      onChange={(e) => setSex(e.target.value as Gender)}
-                      className="w-full mt-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
-                    >
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                    </select>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <label className="text-xs text-slate-400 font-semibold">Gestational Trimester</label>
-                  <select
-                    value={trimester}
-                    onChange={(e) => setTrimester(Number(e.target.value) as any)}
-                    className="w-full mt-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
-                  >
-                    <option value={1}>Trimester 1 (Weeks 1-12)</option>
-                    <option value={2}>Trimester 2 (Weeks 13-27)</option>
-                    <option value={3}>Trimester 3 (Weeks 28-40)</option>
-                  </select>
-                </div>
-              )}
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs text-slate-400 font-semibold">Guardian / Spouse</label>
+                  <label className="text-[12px] font-semibold text-[#1d1d1f] block mb-1">Category</label>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value as Category)}
+                    className="w-full px-3 py-2.5 rounded-xl border border-black/[0.1] text-[13px]"
+                  >
+                    <option value="child">Child (6–59m)</option>
+                    <option value="pregnant">Pregnant Mother</option>
+                  </select>
+                </div>
+
+                {category === 'child' ? (
+                  <div>
+                    <label className="text-[12px] font-semibold text-[#1d1d1f] block mb-1">Age (Years)</label>
+                    <input
+                      type="number"
+                      min={0.5}
+                      max={5}
+                      step={0.5}
+                      value={ageYears}
+                      onChange={(e) => setAgeYears(parseFloat(e.target.value))}
+                      className="w-full px-3 py-2.5 rounded-xl border border-black/[0.1] text-[13px]"
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <label className="text-[12px] font-semibold text-[#1d1d1f] block mb-1">Trimester</label>
+                    <select
+                      value={trimester}
+                      onChange={(e) => setTrimester(parseInt(e.target.value) as 1 | 2 | 3)}
+                      className="w-full px-3 py-2.5 rounded-xl border border-black/[0.1] text-[13px]"
+                    >
+                      <option value={1}>1st Trimester</option>
+                      <option value={2}>2nd Trimester</option>
+                      <option value={3}>3rd Trimester</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-[12px] font-semibold text-[#1d1d1f] block mb-1">Guardian Name</label>
                   <input
                     type="text"
-                    placeholder="Guardian Name"
                     value={guardianName}
                     onChange={(e) => setGuardianName(e.target.value)}
-                    className="w-full mt-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
+                    placeholder="Mother / Father"
+                    className="w-full px-3 py-2.5 rounded-xl border border-black/[0.1] text-[13px]"
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-slate-400 font-semibold">Village / Habitation</label>
+                  <label className="text-[12px] font-semibold text-[#1d1d1f] block mb-1">Village Hamlet</label>
                   <input
                     type="text"
-                    placeholder="Village Name"
                     value={locationVillage}
                     onChange={(e) => setLocationVillage(e.target.value)}
-                    className="w-full mt-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white"
+                    placeholder="Ramgarh"
+                    className="w-full px-3 py-2.5 rounded-xl border border-black/[0.1] text-[13px]"
                   />
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-2 pt-2">
+              <div className="pt-4 flex gap-3">
                 <button
                   type="button"
                   onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold"
+                  className="flex-1 py-3 rounded-xl border border-black/[0.1] text-[13px] font-medium text-[#6e6e73] hover:bg-[#f5f5f7]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold"
+                  className="flex-1 apple-btn-accent py-3 text-[13px] font-medium shadow-sm"
                 >
-                  Save & Issue Record
+                  Save Beneficiary
                 </button>
               </div>
             </form>
           </div>
         </div>
       )}
+
     </div>
   );
 };

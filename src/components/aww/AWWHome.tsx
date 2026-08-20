@@ -4,14 +4,14 @@ import { getTranslation } from '../../services/localizationService';
 import { SafetyDisclaimerBanner } from '../common/SafetyDisclaimerBanner';
 import {
   Users,
-  PlusCircle,
+  Plus,
   Clock,
   TrendingUp,
   AlertTriangle,
   ChevronRight,
   HeartPulse,
-  CheckCircle,
-  Search,
+  CheckCircle2,
+  ArrowUpRight,
 } from 'lucide-react';
 
 interface AWWHomeProps {
@@ -34,140 +34,159 @@ export const AWWHome: React.FC<AWWHomeProps> = ({
   );
 
   return (
-    <div className="space-y-6 pb-12 max-w-5xl mx-auto">
-      {/* Frontline Worker Greeting Header Card */}
-      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm relative overflow-hidden">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+    <div className="space-y-8 pb-16 max-w-[1040px] mx-auto">
+      
+      {/* Frontline Worker Greeting & Daily Agenda Header */}
+      <div className="bg-white rounded-[32px] p-8 sm:p-10 border border-black/[0.06] shadow-sm relative overflow-hidden">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div>
-            <div className="flex items-center space-x-2 text-emerald-700 text-xs font-semibold mb-1">
-              <HeartPulse className="w-4 h-4 text-emerald-600" />
+            <div className="flex items-center gap-2 text-[#00776b] text-[12px] font-semibold mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#00776b]" />
               <span>Ramgarh Sector • Anganwadi Centre #04</span>
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Good morning, Meena 👋</h2>
-            <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-              Here is your screening agenda and health updates for the 142 mothers and children under your care.
+            <h2 className="text-[32px] sm:text-[40px] font-semibold tracking-title text-[#1d1d1f] leading-[1.1]">
+              Good morning, Meena.
+            </h2>
+            <p className="text-[15px] text-[#6e6e73] mt-2 leading-relaxed max-w-xl">
+              Here is your daily screening agenda and health updates for the 142 mothers and children under your care.
             </p>
           </div>
 
           <button
             onClick={() => onStartNewScreening()}
-            className="flex items-center justify-center space-x-2 px-5 py-3 rounded-xl bg-[#0f766e] hover:bg-[#0d9488] text-white font-bold text-sm shadow-sm transition-all hover:scale-[1.01] active:scale-[0.99]"
+            className="apple-btn-accent px-6 py-3.5 text-[14px] inline-flex items-center justify-center gap-2 cursor-pointer shadow-md self-start md:self-auto"
           >
-            <PlusCircle className="w-5 h-5" />
+            <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>{getTranslation(language, 'newScreening')}</span>
           </button>
         </div>
 
-        {/* 4 Health Metrics Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-5 border-t border-slate-100">
-          <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-200">
-            <div className="text-slate-600 text-xs font-semibold">
+        {/* 4 Health Metric Cards (Apple Restrained Style) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-black/[0.06]">
+          
+          <div className="bg-[#fbfbfd] rounded-2xl p-4 border border-black/[0.05]">
+            <span className="text-[12px] font-medium text-[#86868b] block">
               {getTranslation(language, 'screenedToday')}
-            </div>
-            <div className="text-2xl font-black text-slate-900 mt-1">24</div>
-            <div className="text-[10px] text-emerald-700 mt-1 flex items-center font-medium">
-              <CheckCircle className="w-3 h-3 mr-0.5" /> Daily Target Met
+            </span>
+            <div className="text-[28px] font-semibold text-[#1d1d1f] tracking-tight font-mono mt-1">24</div>
+            <div className="text-[11px] text-[#00776b] mt-1 flex items-center gap-1 font-medium">
+              <CheckCircle2 className="w-3 h-3" />
+              <span>Daily Target Met</span>
             </div>
           </div>
 
-          <div className="bg-amber-50/70 rounded-xl p-3.5 border border-amber-200">
-            <div className="text-amber-900 text-xs font-semibold">
+          <div className="bg-amber-50/60 rounded-2xl p-4 border border-amber-200/80">
+            <span className="text-[12px] font-medium text-amber-900 block">
               {getTranslation(language, 'highRiskCases')}
+            </span>
+            <div className="text-[28px] font-semibold text-amber-800 tracking-tight font-mono mt-1">
+              {highRiskList.length}
             </div>
-            <div className="text-2xl font-black text-amber-700 mt-1">{highRiskList.length}</div>
-            <div className="text-[10px] text-amber-800 mt-1">Requires follow-up</div>
+            <div className="text-[11px] text-amber-700 mt-1 font-medium">
+              Requires follow-up
+            </div>
           </div>
 
-          <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-200">
-            <div className="text-slate-600 text-xs font-semibold">
+          <div className="bg-[#fbfbfd] rounded-2xl p-4 border border-black/[0.05]">
+            <span className="text-[12px] font-medium text-[#86868b] block">
               {getTranslation(language, 'followupsDue')}
+            </span>
+            <div className="text-[28px] font-semibold text-[#1d1d1f] tracking-tight font-mono mt-1">7</div>
+            <div className="text-[11px] text-[#6e6e73] mt-1 font-medium">
+              Next 14 days
             </div>
-            <div className="text-2xl font-black text-slate-900 mt-1">7</div>
-            <div className="text-[10px] text-emerald-700 mt-1">Next 14 days</div>
           </div>
 
-          <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-200">
-            <div className="text-slate-600 text-xs font-semibold">
+          <div className="bg-[#fbfbfd] rounded-2xl p-4 border border-black/[0.05]">
+            <span className="text-[12px] font-medium text-[#86868b] block">
               {getTranslation(language, 'weeklyCoverage')}
+            </span>
+            <div className="text-[28px] font-semibold text-[#00776b] tracking-tight font-mono mt-1">82%</div>
+            <div className="text-[11px] text-[#86868b] mt-1 font-medium">
+              Target 80%
             </div>
-            <div className="text-2xl font-black text-emerald-700 mt-1">82%</div>
-            <div className="text-[10px] text-slate-500 mt-1">Target 80%</div>
           </div>
+
         </div>
       </div>
 
-      {/* Human AI Medical Disclaimer */}
+      {/* Medical AI Safety Disclaimer Banner */}
       <SafetyDisclaimerBanner language={language} />
 
-      {/* Quick Actions Navigation Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      {/* Quick Navigation Rows */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        
         <button
           onClick={() => onNavigateTab('beneficiaries')}
-          className="flex items-center justify-between p-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 transition-all text-left group shadow-sm"
+          className="flex items-center justify-between p-5 rounded-2xl bg-white hover:bg-[#fbfbfd] border border-black/[0.06] transition-all text-left group shadow-sm"
         >
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center">
-              <Users className="w-5 h-5" />
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-[#f5f5f7] text-[#1d1d1f] flex items-center justify-center">
+              <Users className="w-5 h-5 stroke-[1.75]" />
             </div>
             <div>
-              <div className="text-sm font-bold text-slate-900 group-hover:text-emerald-800">
+              <div className="text-[15px] font-semibold text-[#1d1d1f] group-hover:text-[#00776b] transition-colors">
                 {getTranslation(language, 'beneficiaries')}
               </div>
-              <p className="text-xs text-slate-500">Search & health profiles</p>
+              <p className="text-[12px] text-[#86868b]">Search & registry records</p>
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-700 transition-all" />
+          <ChevronRight className="w-4 h-4 text-[#86868b] group-hover:text-[#1d1d1f] transition-transform group-hover:translate-x-0.5" />
         </button>
 
         <button
           onClick={() => onNavigateTab('followups')}
-          className="flex items-center justify-between p-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 transition-all text-left group shadow-sm"
+          className="flex items-center justify-between p-5 rounded-2xl bg-white hover:bg-[#fbfbfd] border border-black/[0.06] transition-all text-left group shadow-sm"
         >
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center">
-              <Clock className="w-5 h-5" />
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-[#f5f5f7] text-[#1d1d1f] flex items-center justify-center">
+              <Clock className="w-5 h-5 stroke-[1.75]" />
             </div>
             <div>
-              <div className="text-sm font-bold text-slate-900 group-hover:text-amber-800">
+              <div className="text-[15px] font-semibold text-[#1d1d1f] group-hover:text-[#00776b] transition-colors">
                 {getTranslation(language, 'followUps')}
               </div>
-              <p className="text-xs text-slate-500">7 pending actions</p>
+              <p className="text-[12px] text-[#86868b]">7 pending visits</p>
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-amber-700 transition-all" />
+          <ChevronRight className="w-4 h-4 text-[#86868b] group-hover:text-[#1d1d1f] transition-transform group-hover:translate-x-0.5" />
         </button>
 
         <button
           onClick={() => onNavigateTab('trend')}
-          className="flex items-center justify-between p-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 transition-all text-left group shadow-sm"
+          className="flex items-center justify-between p-5 rounded-2xl bg-white hover:bg-[#fbfbfd] border border-black/[0.06] transition-all text-left group shadow-sm"
         >
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-lg bg-purple-50 text-purple-700 border border-purple-200 flex items-center justify-center">
-              <TrendingUp className="w-5 h-5" />
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-[#f5f5f7] text-[#1d1d1f] flex items-center justify-center">
+              <TrendingUp className="w-5 h-5 stroke-[1.75]" />
             </div>
             <div>
-              <div className="text-sm font-bold text-slate-900 group-hover:text-purple-800">
-                Longitudinal Intelligence
+              <div className="text-[15px] font-semibold text-[#1d1d1f] group-hover:text-[#00776b] transition-colors">
+                Longitudinal Trends
               </div>
-              <p className="text-xs text-slate-500">Risk trajectory trends</p>
+              <p className="text-[12px] text-[#86868b]">Growth & risk trajectories</p>
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-purple-700 transition-all" />
+          <ChevronRight className="w-4 h-4 text-[#86868b] group-hover:text-[#1d1d1f] transition-transform group-hover:translate-x-0.5" />
         </button>
+
       </div>
 
-      {/* Priority Cases List (Standard Web Portal Table/List) */}
-      <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+      {/* Priority Follow-up Cases Section */}
+      <div className="bg-white rounded-[32px] p-6 sm:p-8 border border-black/[0.06] shadow-sm space-y-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <AlertTriangle className="w-5 h-5 text-amber-600" />
-            <h3 className="text-base font-bold text-slate-900">Priority Follow-Up Cases</h3>
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+            <h3 className="text-[18px] font-semibold text-[#1d1d1f] tracking-tight">
+              Priority Follow-Up Cases
+            </h3>
           </div>
           <button
             onClick={() => onNavigateTab('beneficiaries')}
-            className="text-xs text-emerald-700 hover:underline font-semibold"
+            className="text-[13px] text-[#00776b] hover:text-[#006359] font-medium flex items-center gap-1"
           >
-            View all records →
+            <span>View all registry</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
@@ -176,45 +195,45 @@ export const AWWHome: React.FC<AWWHomeProps> = ({
             <div
               key={beneficiary.id}
               onClick={() => onSelectBeneficiary(beneficiary)}
-              className="p-4 rounded-xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-200 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
+              className="p-5 rounded-2xl bg-[#fbfbfd] hover:bg-[#f5f5f7] border border-black/[0.04] transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 group"
             >
               <div className="space-y-1">
-                <div className="flex items-center space-x-2 flex-wrap">
-                  <span className="font-bold text-slate-900 text-base group-hover:text-emerald-800">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-semibold text-[#1d1d1f] text-[16px] group-hover:text-[#00776b] transition-colors">
                     {beneficiary.name}
                   </span>
-                  <span className="text-xs text-slate-500">
-                    ({beneficiary.category === 'child' ? `Child, Age ${beneficiary.ageYears}` : `Pregnant, Trimester ${beneficiary.trimester}`})
+                  <span className="text-[12px] text-[#86868b]">
+                    ({beneficiary.category === 'child' ? `Child, Age ${beneficiary.ageYears}y` : `Pregnant, Trimester ${beneficiary.trimester}`})
                   </span>
                   {beneficiary.isDemoData && (
-                    <span className="px-2 py-0.5 text-[9px] font-bold rounded bg-slate-200 text-slate-700">
-                      DEMO RECORD
+                    <span className="px-2 py-0.5 text-[9px] font-medium rounded-full bg-black/[0.05] text-[#6e6e73]">
+                      DEMO
                     </span>
                   )}
                 </div>
-                <div className="text-xs text-slate-600">
+                <div className="text-[12px] text-[#6e6e73]">
                   Village: {beneficiary.locationVillage} • Guardian: {beneficiary.guardianName}
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3 self-end sm:self-auto">
+              <div className="flex items-center gap-4 self-end sm:self-auto">
                 <div className="text-right">
-                  <div className="flex items-center space-x-1.5 justify-end">
-                    <span className="text-xs text-slate-500">Anemia Risk:</span>
+                  <div className="flex items-center gap-1.5 justify-end">
+                    <span className="text-[11px] text-[#86868b]">Anemia Risk:</span>
                     <span
-                      className={`px-2.5 py-0.5 text-xs font-bold rounded-md ${
+                      className={`px-2.5 py-0.5 text-[11px] font-semibold rounded-full ${
                         beneficiary.anemiaRisk === 'ELEVATED'
-                          ? 'bg-rose-100 text-rose-800 border border-rose-200'
+                          ? 'bg-red-50 text-red-800 border border-red-200'
                           : beneficiary.anemiaRisk === 'MODERATE'
-                          ? 'bg-amber-100 text-amber-800 border border-amber-200'
-                          : 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                          ? 'bg-amber-50 text-amber-800 border border-amber-200'
+                          : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                       }`}
                     >
                       {beneficiary.anemiaRisk}
                     </span>
                   </div>
-                  <div className="text-[11px] text-amber-800 font-medium mt-1">
-                    Trajectory: {beneficiary.trajectory.replace('_', ' ')}
+                  <div className="text-[11px] text-[#86868b] mt-0.5">
+                    Trajectory: <span className="font-medium text-[#1d1d1f]">{beneficiary.trajectory.replace('_', ' ')}</span>
                   </div>
                 </div>
 
@@ -223,7 +242,7 @@ export const AWWHome: React.FC<AWWHomeProps> = ({
                     e.stopPropagation();
                     onStartNewScreening(beneficiary);
                   }}
-                  className="px-4 py-2 rounded-xl bg-[#0f766e] hover:bg-[#0d9488] text-white text-xs font-bold shadow-sm"
+                  className="apple-btn-accent px-4 py-2 text-[12px] font-medium shadow-sm"
                 >
                   Screen Now
                 </button>
@@ -232,6 +251,7 @@ export const AWWHome: React.FC<AWWHomeProps> = ({
           ))}
         </div>
       </div>
+
     </div>
   );
 };

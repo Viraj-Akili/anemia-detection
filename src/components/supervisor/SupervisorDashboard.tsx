@@ -6,10 +6,7 @@ import {
   Activity,
   AlertTriangle,
   MapPin,
-  CheckCircle,
-  BarChart2,
-  PieChart as PieIcon,
-  UserCheck,
+  CheckCircle2,
   Building,
   ArrowUpRight,
 } from 'lucide-react';
@@ -42,9 +39,9 @@ export const SupervisorDashboard: React.FC<SupervisorDashboardProps> = ({
   );
 
   const riskDistributionData = [
-    { name: 'Low Risk', value: 720, color: '#10b981' },
+    { name: 'Low Risk', value: 720, color: '#00776b' },
     { name: 'Moderate Risk', value: 550, color: '#f59e0b' },
-    { name: 'Elevated Risk', value: 150, color: '#f43f5e' },
+    { name: 'Elevated Risk', value: 150, color: '#ef4444' },
   ];
 
   const sectorVolumeData = [
@@ -55,154 +52,125 @@ export const SupervisorDashboard: React.FC<SupervisorDashboardProps> = ({
   ];
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-12">
+    <div className="space-y-8 max-w-[1140px] mx-auto pb-16">
+      
       {/* Header Banner */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white border border-black/[0.06] rounded-[32px] p-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center space-x-2 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-[#00776b] text-[12px] font-semibold mb-1">
             <Building className="w-4 h-4" />
-            <span>Ramgarh Health Sector • District Analytics</span>
+            <span>Ramgarh Sector • Sector Supervisor Dashboard</span>
           </div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">Supervisor Operations Portal</h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <h2 className="text-[32px] font-semibold text-[#1d1d1f] tracking-title">
+            Supervisor Operations Portal
+          </h2>
+          <p className="text-[14px] text-[#6e6e73] mt-1">
             Monitoring 4 Anganwadi Centres, 18 frontline workers, and 1,420 registered beneficiaries.
           </p>
         </div>
 
-        <div className="flex items-center space-x-2 bg-slate-950 px-4 py-2 rounded-xl border border-slate-800 text-xs text-slate-300">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Sector Status: <strong className="text-white">Active Monitoring</strong></span>
+        <div className="flex items-center gap-2 bg-[#fbfbfd] px-4 py-2 rounded-full border border-black/[0.05] text-[12px] text-[#1d1d1f]">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Status: <strong className="font-semibold">Active Sector Monitoring</strong></span>
         </div>
       </div>
 
       {/* 4 Core Supervisor KPIs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-1">
-          <div className="text-xs text-slate-400 font-semibold">Total Beneficiaries Screened</div>
-          <div className="text-3xl font-black text-white">1,420</div>
-          <div className="text-[11px] text-emerald-400 font-medium flex items-center">
-            <ArrowUpRight className="w-3.5 h-3.5 mr-0.5" /> +12% from last month
-          </div>
+        
+        <div className="bg-white p-6 rounded-[28px] border border-black/[0.06] shadow-sm space-y-1">
+          <span className="text-[12px] text-[#86868b] font-medium">Total Registered</span>
+          <div className="text-[32px] font-bold text-[#1d1d1f] font-mono">1,420</div>
+          <div className="text-[12px] text-[#00776b] font-medium">4 Sector Centres</div>
         </div>
 
-        <div className="bg-slate-900 p-5 rounded-2xl border border-rose-900/40 space-y-1">
-          <div className="text-xs text-slate-400 font-semibold">High-Risk Cases Identified</div>
-          <div className="text-3xl font-black text-rose-400">142</div>
-          <div className="text-[11px] text-rose-300/80">Flagged for PHC laboratory confirmation</div>
+        <div className="bg-white p-6 rounded-[28px] border border-black/[0.06] shadow-sm space-y-1">
+          <span className="text-[12px] text-[#86868b] font-medium">Monthly Screened</span>
+          <div className="text-[32px] font-bold text-[#1d1d1f] font-mono">1,164</div>
+          <div className="text-[12px] text-[#00776b] font-medium">82.0% Coverage (Target 80%)</div>
         </div>
 
-        <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-1">
-          <div className="text-xs text-slate-400 font-semibold">Pending Follow-Ups</div>
-          <div className="text-3xl font-black text-amber-400">38</div>
-          <div className="text-[11px] text-slate-400">Scheduled in next 14 days</div>
+        <div className="bg-white p-6 rounded-[28px] border border-red-200/80 shadow-sm space-y-1">
+          <span className="text-[12px] text-red-700 font-medium">Severe / High Risk Flags</span>
+          <div className="text-[32px] font-bold text-red-700 font-mono">142</div>
+          <div className="text-[12px] text-red-600 font-medium">100% Referred to PHC</div>
         </div>
 
-        <div className="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-1">
-          <div className="text-xs text-slate-400 font-semibold">Follow-Up Completion Rate</div>
-          <div className="text-3xl font-black text-emerald-400">89%</div>
-          <div className="text-[11px] text-emerald-400">Exceeds 85% target</div>
+        <div className="bg-white p-6 rounded-[28px] border border-black/[0.06] shadow-sm space-y-1">
+          <span className="text-[12px] text-[#86868b] font-medium">Average Screening Time</span>
+          <div className="text-[32px] font-bold text-[#1d1d1f] font-mono">48s</div>
+          <div className="text-[12px] text-[#00776b] font-medium">Zero External Hardware</div>
         </div>
+
       </div>
 
       {/* Analytics Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Screening Volume by AWC */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-white font-bold text-sm">
-              <BarChart2 className="w-4 h-4 text-cyan-400" />
-              <span>Screening Volume by Anganwadi Centre</span>
-            </div>
-          </div>
-          <div className="h-64 w-full pt-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        {/* Sector Screening Volume Chart */}
+        <div className="lg:col-span-8 bg-white p-8 rounded-[32px] border border-black/[0.06] shadow-sm space-y-4">
+          <h3 className="text-[18px] font-semibold text-[#1d1d1f]">
+            Screening Volume by Anganwadi Centre
+          </h3>
+          <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={sectorVolumeData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                <XAxis dataKey="centre" stroke="#64748b" fontSize={10} />
-                <YAxis stroke="#64748b" fontSize={10} />
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155' }} />
-                <Bar dataKey="screened" fill="#38bdf8" name="Screened" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="highRisk" fill="#f43f5e" name="High Risk" radius={[4, 4, 0, 0]} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f2" />
+                <XAxis dataKey="centre" stroke="#86868b" fontSize={11} tickLine={false} />
+                <YAxis stroke="#86868b" fontSize={11} tickLine={false} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: '14px',
+                    border: '1px solid rgba(0,0,0,0.08)',
+                  }}
+                />
+                <Bar dataKey="screened" fill="#00776b" name="Screened" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="highRisk" fill="#ef4444" name="High Risk Flags" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Sector Risk Distribution */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-white font-bold text-sm">
-              <PieIcon className="w-4 h-4 text-purple-400" />
-              <span>Anemia Risk Distribution Across Sector</span>
-            </div>
-          </div>
-          <div className="h-64 w-full flex items-center justify-center">
+        {/* Risk Distribution Pie Chart */}
+        <div className="lg:col-span-4 bg-white p-8 rounded-[32px] border border-black/[0.06] shadow-sm space-y-4">
+          <h3 className="text-[18px] font-semibold text-[#1d1d1f]">Risk Distribution</h3>
+          <div className="h-56 w-full flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={riskDistributionData}
                   cx="50%"
                   cy="50%"
-                  innerRadius={60}
-                  outerRadius={90}
-                  paddingAngle={4}
+                  innerRadius={50}
+                  outerRadius={75}
+                  paddingAngle={5}
                   dataKey="value"
                 >
                   {riskDistributionData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155' }} />
+                <Tooltip />
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="flex justify-center space-x-6 text-xs text-slate-400">
+
+          <div className="space-y-2 text-[12px]">
             {riskDistributionData.map((item) => (
-              <div key={item.name} className="flex items-center space-x-1.5">
-                <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                <span>{item.name} ({item.value})</span>
+              <div key={item.name} className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: item.color }} />
+                  <span className="text-[#6e6e73]">{item.name}</span>
+                </div>
+                <span className="font-semibold text-[#1d1d1f] font-mono">{item.value} ({((item.value/1420)*100).toFixed(0)}%)</span>
               </div>
             ))}
           </div>
         </div>
+
       </div>
 
-      {/* High-Risk Referral Queue */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 text-amber-400 font-bold text-base">
-            <AlertTriangle className="w-5 h-5" />
-            <span>High-Risk Case Referral Tracking Queue</span>
-          </div>
-          <span className="text-xs text-slate-400">{highRiskCases.length} urgent cases</span>
-        </div>
-
-        <div className="space-y-3">
-          {highRiskCases.map((b) => (
-            <div
-              key={b.id}
-              onClick={() => onSelectBeneficiary(b)}
-              className="bg-slate-950 p-4 rounded-xl border border-slate-800/80 hover:bg-slate-850 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-            >
-              <div>
-                <div className="font-bold text-white text-sm">{b.name}</div>
-                <div className="text-xs text-slate-400">
-                  Village: {b.locationVillage} • Centre: {b.anganwadiCentreId} • Guardian: {b.guardianName}
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <span className="px-2.5 py-1 text-xs font-bold rounded bg-rose-950 text-rose-300 border border-rose-800">
-                  {b.anemiaRisk} Risk
-                </span>
-                <span className="text-xs text-amber-300 font-medium">
-                  Trajectory: {b.trajectory.replace('_', ' ')}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };
