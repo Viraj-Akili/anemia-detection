@@ -2,6 +2,11 @@
 
 > **HTAD-06 Hackathon Platform** | Aligned with **WHO 2024 Guidelines**, **Anemia Mukt Bharat (MoHFW)**, and **POSHAN Abhiyaan (MWCD)**
 
+### 🌐 Frontend Web Application Link:
+👉 **[http://localhost:3000/](http://localhost:3000/)** *(Local Web App Server)*
+
+---
+
 PRAHARI turns any frontline Anganwadi Worker (AWW) or ASHA worker's smartphone into an **offline, non-invasive, early-warning sentinel** for anemia and malnutrition in children (6–59 months) and pregnant women. 
 
 Unlike one-shot diagnostic tools, PRAHARI combines **optical camera screening**, **WHO anthropometry (MUAC/weight/height)**, and **longitudinal trajectory intelligence** to flag health decline *before* visible clinical damage occurs.
