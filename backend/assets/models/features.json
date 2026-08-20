@@ -1,0 +1,22 @@
+[
+  "anemia_risk_score",
+  "anemia_confidence",
+  "whz",
+  "haz",
+  "waz",
+  "muac_z",
+  "whz_cat",
+  "haz_cat",
+  "waz_cat",
+  "muac_cat",
+  "diet_risk",
+  "ifa_protection",
+  "symptom_flags",
+  "age_months",
+  "sex_enc",
+  "pregnancy_enc",
+  "trimester_enc",
+  "prev_anemia_risk",
+  "prev_nutrition_risk",
+  "visits_count"
+]
