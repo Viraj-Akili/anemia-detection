@@ -1,0 +1,40 @@
+{
+  "model": "mobilenet_v2",
+  "accuracy": 0.7522123893805309,
+  "precision_anemic": 0.8142857142857143,
+  "recall_anemic": 0.7916666666666666,
+  "f1_anemic": 0.8028169014084507,
+  "precision_non_anemic": 0.6511627906976745,
+  "recall_non_anemic": 0.6829268292682927,
+  "f1_non_anemic": 0.6666666666666666,
+  "roc_auc": 0.8211382113821138,
+  "confusion_matrix": [
+    [
+      28,
+      13
+    ],
+    [
+      15,
+      57
+    ]
+  ],
+  "n_samples": 113,
+  "model_path": "C:\\Users\\Viraj Akili\\OneDrive\\Desktop\\person1\\models\\mobilenetv2_best.pth",
+  "latency": {
+    "gpu": {
+      "mean_ms": 8.57904338439965,
+      "median_ms": 7.214300334453583,
+      "p95_ms": 13.006830168887973,
+      "n": 339,
+      "device": "cuda"
+    },
+    "cpu": {
+      "mean_ms": 16.517492931522977,
+      "median_ms": 15.964099671691656,
+      "p95_ms": 21.76906019449234,
+      "n": 339,
+      "device": "cpu"
+    }
+  },
+  "selected_by": "validation anemic-class F1"
+}

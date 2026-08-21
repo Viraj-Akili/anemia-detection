@@ -1,0 +1,11 @@
+subject_id,gender,age,hemoglobin_g_dl,n_recordings,n_samples,anemia_status,strata,split
+5,Female,59,12.2,1,250.0,Non-Anemic,Female_Non-Anemic,validation
+8,Male,50,16.3,1,249.0,Non-Anemic,Male_Non-Anemic,validation
+9,Male,62,14.7,1,249.0,Non-Anemic,Male_Non-Anemic,validation
+20,Female,38,11.5,1,249.0,Anemic,Female_Anemic,validation
+24,Female,54,11.6,1,249.0,Anemic,Female_Anemic,validation
+42,Female,27,15.3,1,250.0,Non-Anemic,Female_Non-Anemic,validation
+44,Male,38,12.8,1,250.0,Anemic,Male_Anemic,validation
+57,Female,63,12.1,1,250.0,Non-Anemic,Female_Non-Anemic,validation
+60,Female,43,9.6,1,250.0,Anemic,Female_Anemic,validation
+68,Male,18,14.4,1,249.0,Non-Anemic,Male_Non-Anemic,validation

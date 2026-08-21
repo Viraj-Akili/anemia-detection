@@ -1,0 +1,66 @@
+{
+  "total_files": 710,
+  "usable": 708,
+  "by_status": {
+    "ok": 708,
+    "label_conflict": 2
+  },
+  "rejected": [
+    {
+      "image": "Image_310",
+      "reason": "label_conflict",
+      "details": [
+        "identical content labeled ['anemic', 'non_anemic']"
+      ]
+    },
+    {
+      "image": "Image_188",
+      "reason": "label_conflict",
+      "details": [
+        "identical content labeled ['anemic', 'non_anemic']"
+      ]
+    }
+  ],
+  "duplicate_files": 212,
+  "seed": 42,
+  "image_size": 224,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "split_strategy": "content-group-level stratified split by (label, hospital); byte-identical images never span splits",
+  "leakage_prevention": [
+    "split unit = md5 content group (identical images stay together)",
+    "subject (IMAGE_ID) is unique per image; content groups cover cross-ID duplication",
+    "stratification by label and hospital",
+    "fixed seed for reproducibility"
+  ],
+  "class_distribution": {
+    "train": {
+      "non_anemic": 194,
+      "anemic": 304
+    },
+    "val": {
+      "non_anemic": 50,
+      "anemic": 47
+    },
+    "test": {
+      "non_anemic": 41,
+      "anemic": 72
+    }
+  },
+  "total_samples": 708,
+  "train_samples": 498,
+  "validation_samples": 97,
+  "test_samples": 113,
+  "image_channels": "RGB (alpha composited over white)",
+  "preprocessing": [
+    "RGBA -> RGB over white background",
+    "aspect-preserving resize + white pad to 224x224",
+    "no normalization baked in (ImageNet normalize applied in training transforms)"
+  ],
+  "augmentation": "applied at training time only (Hour 3); validation/test stay deterministic",
+  "quality_notes": "quality metrics recorded in data/dataset_validation.csv; only corrupt/label-conflict samples excluded",
+  "groups_with_mixed_hospital": 85
+}

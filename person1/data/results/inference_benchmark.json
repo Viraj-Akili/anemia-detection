@@ -1,0 +1,32 @@
+{
+  "ai_model": "random_forest_color_baseline",
+  "n_images": 113,
+  "successful": 113,
+  "rejected": {
+    "count": 0,
+    "reasons": []
+  },
+  "model_load_ms": 1131.99,
+  "latency": {
+    "total": {
+      "mean_ms": 58.374169035361405,
+      "median_ms": 62.828300055116415,
+      "p95_ms": 123.78429993987079
+    },
+    "decode": {
+      "mean_ms": 1.323654867256637,
+      "median_ms": 1.363,
+      "p95_ms": 2.4488
+    },
+    "quality_gate": {
+      "mean_ms": 1.7905752212389379,
+      "median_ms": 0.865,
+      "p95_ms": 2.407199999999999
+    },
+    "features_predict": {
+      "mean_ms": 55.20265486725663,
+      "median_ms": 60.625,
+      "p95_ms": 118.63539999999998
+    }
+  }
+}

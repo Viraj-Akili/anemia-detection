@@ -1,0 +1,86 @@
+[
+  {
+    "model_name": "Dummy (Mean Baseline)",
+    "train_mae": 1.359,
+    "train_rmse": 1.7059,
+    "train_r2": 0.0,
+    "val_mae": 1.65,
+    "val_rmse": 1.9779,
+    "val_r2": -0.0224,
+    "test_mae": 1.4779,
+    "test_rmse": 1.891,
+    "test_r2": -0.0004
+  },
+  {
+    "model_name": "Linear Regression",
+    "train_mae": 0.0,
+    "train_rmse": 0.0,
+    "train_r2": 1.0,
+    "val_mae": 9.057,
+    "val_rmse": 11.0802,
+    "val_r2": -31.0846,
+    "test_mae": 9.3473,
+    "test_rmse": 12.5236,
+    "test_r2": -42.8814
+  },
+  {
+    "model_name": "Ridge Regression",
+    "train_mae": 0.8893,
+    "train_rmse": 1.1225,
+    "train_r2": 0.567,
+    "val_mae": 1.4454,
+    "val_rmse": 1.8276,
+    "val_r2": 0.1271,
+    "test_mae": 1.2813,
+    "test_rmse": 1.5755,
+    "test_r2": 0.3056
+  },
+  {
+    "model_name": "Lasso Regression",
+    "train_mae": 1.0145,
+    "train_rmse": 1.2647,
+    "train_r2": 0.4503,
+    "val_mae": 1.1151,
+    "val_rmse": 1.4875,
+    "val_r2": 0.4218,
+    "test_mae": 1.1345,
+    "test_rmse": 1.3597,
+    "test_r2": 0.4828
+  },
+  {
+    "model_name": "Random Forest Regressor",
+    "train_mae": 0.6056,
+    "train_rmse": 0.7676,
+    "train_r2": 0.7975,
+    "val_mae": 1.6338,
+    "val_rmse": 1.8163,
+    "val_r2": 0.1378,
+    "test_mae": 1.3183,
+    "test_rmse": 1.6151,
+    "test_r2": 0.2702
+  },
+  {
+    "model_name": "Gradient Boosting Regressor",
+    "train_mae": 0.3114,
+    "train_rmse": 0.3856,
+    "train_r2": 0.9489,
+    "val_mae": 1.6148,
+    "val_rmse": 1.8171,
+    "val_r2": 0.1371,
+    "test_mae": 1.2442,
+    "test_rmse": 1.4813,
+    "test_r2": 0.3861
+  },
+  {
+    "model_name": "Support Vector Regressor (SVR)",
+    "train_mae": 0.8814,
+    "train_rmse": 1.2551,
+    "train_r2": 0.4587,
+    "val_mae": 1.524,
+    "val_rmse": 1.752,
+    "val_r2": 0.1978,
+    "test_mae": 1.4045,
+    "test_rmse": 1.7224,
+    "test_r2": 0.17
+  }
+]

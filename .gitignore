@@ -1,0 +1,66 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+!.env.template
+
+# API keys / credentials
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+service-account.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Databases / local runtime
+*.db
+*.sqlite
+*.sqlite3
+
+# PPG large raw/processed datasets (keep metadata and demo files, exclude bulk raw/subject captures)
+ppg-anemia/data/raw/*
+ppg-anemia/data/processed/subjects/*
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Python tooling
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ML/cache files
+*.cache

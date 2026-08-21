@@ -1,0 +1,43 @@
+{
+  "random_forest": {
+    "accuracy": 0.8761061946902655,
+    "precision_anemic": 0.9142857142857143,
+    "recall_anemic": 0.8888888888888888,
+    "f1_anemic": 0.9014084507042254,
+    "roc_auc": 0.923780487804878,
+    "precision_non_anemic": 0.813953488372093,
+    "recall_non_anemic": 0.8536585365853658,
+    "f1_non_anemic": 0.8333333333333334,
+    "latency_ms": {
+      "mean": 55.57518200207073,
+      "median": 53.41489985585213,
+      "p95": 66.63437997922301
+    },
+    "model_size_mb": 5.13,
+    "test_evaluations": 1
+  },
+  "cnn_mobilenetv2": {
+    "accuracy": 0.7522123893805309,
+    "precision_anemic": 0.8142857142857143,
+    "recall_anemic": 0.7916666666666666,
+    "f1_anemic": 0.8028169014084507,
+    "roc_auc": 0.8211382113821138,
+    "precision_non_anemic": 0.6511627906976745,
+    "recall_non_anemic": 0.6829268292682927,
+    "f1_non_anemic": 0.6666666666666666,
+    "latency_ms": {
+      "cpu": {
+        "mean": 16.517492931522977,
+        "median": 15.964099671691656,
+        "p95": 21.76906019449234
+      },
+      "gpu": {
+        "mean": 8.57904338439965
+      }
+    },
+    "model_size_mb": 9.15,
+    "parameters": 2225153,
+    "test_evaluations": 2
+  },
+  "note": "Both models evaluated on the SAME held-out test split (113 images). RF test = single untouched evaluation. CNN test = final checkpoint of the second training run (first run also evaluated once; test never used for model selection). Screening research prototype \u2014 no clinical validity claimed."
+}

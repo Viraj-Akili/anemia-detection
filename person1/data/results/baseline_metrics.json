@@ -1,0 +1,106 @@
+{
+  "model": "random_forest",
+  "model_path": "C:\\Users\\Viraj Akili\\OneDrive\\Desktop\\person1\\models\\baseline_classifier.joblib",
+  "n_features": 19,
+  "feature_names": [
+    "r_mean",
+    "g_mean",
+    "b_mean",
+    "r_std",
+    "g_std",
+    "b_std",
+    "l_mean",
+    "a_mean",
+    "b_lab_mean",
+    "l_std",
+    "a_std",
+    "b_lab_std",
+    "r_ratio",
+    "r_minus_g",
+    "r_minus_b",
+    "r_p10",
+    "r_p90",
+    "a_p10",
+    "a_p90"
+  ],
+  "validation": {
+    "logistic_regression": {
+      "accuracy": 0.6597938144329897,
+      "precision_anemic": 0.64,
+      "recall_anemic": 0.6808510638297872,
+      "f1_anemic": 0.6597938144329897,
+      "precision_non_anemic": 0.6808510638297872,
+      "recall_non_anemic": 0.64,
+      "f1_non_anemic": 0.6597938144329897,
+      "roc_auc": 0.6982978723404256,
+      "confusion_matrix": [
+        [
+          32,
+          18
+        ],
+        [
+          15,
+          32
+        ]
+      ],
+      "n_samples": 97
+    },
+    "random_forest": {
+      "accuracy": 0.8144329896907216,
+      "precision_anemic": 0.8717948717948718,
+      "recall_anemic": 0.723404255319149,
+      "f1_anemic": 0.7906976744186046,
+      "precision_non_anemic": 0.7758620689655172,
+      "recall_non_anemic": 0.9,
+      "f1_non_anemic": 0.8333333333333334,
+      "roc_auc": 0.9202127659574467,
+      "confusion_matrix": [
+        [
+          45,
+          5
+        ],
+        [
+          13,
+          34
+        ]
+      ],
+      "n_samples": 97
+    }
+  },
+  "test": {
+    "accuracy": 0.8761061946902655,
+    "precision_anemic": 0.9142857142857143,
+    "recall_anemic": 0.8888888888888888,
+    "f1_anemic": 0.9014084507042254,
+    "precision_non_anemic": 0.813953488372093,
+    "recall_non_anemic": 0.8536585365853658,
+    "f1_non_anemic": 0.8333333333333334,
+    "roc_auc": 0.923780487804878,
+    "confusion_matrix": [
+      [
+        35,
+        6
+      ],
+      [
+        8,
+        64
+      ]
+    ],
+    "n_samples": 113,
+    "latency_ms": {
+      "mean_ms": 55.57518200207073,
+      "median_ms": 53.41489985585213,
+      "p95_ms": 66.63437997922301,
+      "samples": 339
+    }
+  },
+  "latency": {
+    "mean_ms": 55.57518200207073,
+    "median_ms": 53.41489985585213,
+    "p95_ms": 66.63437997922301,
+    "samples": 339
+  },
+  "selection_criterion": "validation anemic-class F1",
+  "seed": 42,
+  "note": "Screening research prototype. Metrics are model predictions on the held-out test split; no clinical validity is claimed."
+}

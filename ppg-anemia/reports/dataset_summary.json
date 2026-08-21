@@ -1,0 +1,37 @@
+{
+  "status": "PASSED",
+  "dataset_directory": "C:\\Users\\Viraj Akili\\OneDrive\\Desktop\\ppg-anemia\\data\\raw",
+  "total_files_analyzed": 68,
+  "valid_files_count": 68,
+  "files_with_critical_errors_count": 0,
+  "files_with_warnings_count": 45,
+  "all_required_columns_present": true,
+  "all_red_numeric": true,
+  "all_ir_numeric": true,
+  "nan_values_detected": false,
+  "infinite_values_detected": false,
+  "negative_signals_detected": false,
+  "internal_metadata_consistent": true,
+  "all_recordings_same_length": false,
+  "all_recordings_exactly_250_samples": false,
+  "sample_length_distribution": {
+    "250": 23,
+    "249": 45
+  },
+  "duplicate_recording_groups_count": 0,
+  "duplicate_recording_groups": [],
+  "cross_recording_subject_inconsistencies": [],
+  "demographics": {
+    "gender_breakdown": {
+      "Male": 30,
+      "Female": 38
+    },
+    "age_min": 18,
+    "age_max": 64,
+    "age_mean": 42.86764705882353,
+    "hb_min": 9.4,
+    "hb_max": 17.5,
+    "hb_mean": 12.794117647058826,
+    "hb_std": 1.7787042832735407
+  }
+}

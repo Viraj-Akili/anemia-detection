@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Data directories (Raw data and processed subject files are kept local)
+data/raw/*
+data/processed/subjects/*
+!data/metadata/
+!data/hardware/
+!data/processed/.gitkeep
+!data/processed/ppg_features.csv
+!data/processed/processed_recordings.csv
+!data/processed/preprocessing_quality_summary.csv

@@ -1,0 +1,17 @@
+# PRAHARI risk-logic backend — Hour 1 dependency set.
+# Install:  python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+fastapi
+uvicorn
+pydantic
+sqlalchemy
+alembic
+psycopg2-binary   # binary wheel of psycopg2 (avoids needing libpq headers to build)
+xgboost
+shap
+scikit-learn      # Platt calibration (LogisticRegression) + metrics (Hour 5)
+pandas
+numpy
+pytest
+# Dev tooling: WHO table download/conversion (scripts/fetch_who_tables.py)
+openpyxl
+pypdf

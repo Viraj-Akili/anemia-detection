@@ -1,0 +1,47 @@
+================================================================================
+PRAHARI PPG PIPELINE -- DATASET VALIDATION REPORT (STEP 1B)
+================================================================================
+Validation Status: PASSED
+Target Directory: C:\Users\Viraj Akili\OneDrive\Desktop\ppg-anemia\data\raw
+Total CSV Files Evaluated: 68
+Valid Files: 68 / 68
+Files with Critical Errors: 0
+Files with Warnings: 45
+--------------------------------------------------------------------------------
+CORE INTEGRITY CHECKS:
+  [1] Required Columns Present (Red, IR, Gender, Age, Hb): PASS
+  [2] Numeric Red Signal: PASS
+  [3] Numeric Infra Red Signal: PASS
+  [4] NaN / Null Free: PASS
+  [5] Infinity Free: PASS
+  [6] Negative Signal Free: PASS
+  [7] Internal File Metadata Uniformity: PASS
+  [8] Exact Duplicate Signals: 0 duplicate pairs found
+  [9] Subject Cross-Recording Metadata Consistency: PASS
+--------------------------------------------------------------------------------
+RECORDING LENGTH ANALYSIS:
+  All recordings same length? False
+  All recordings exactly 250 samples? False
+  Observed Length Breakdown:
+    - 249 samples: 45 files
+    - 250 samples: 23 files
+--------------------------------------------------------------------------------
+TARGET & DEMOGRAPHIC METRICS (Across Verified Subjects):
+  - Subject Count: 68
+  - Gender Distribution: {'Male': 30, 'Female': 38}
+  - Age (years): Range = [18, 64], Mean = 42.87
+  - Hemoglobin (g/dL): Range = [9.40, 17.50], Mean = 12.79 ± 1.78
+================================================================================
+WARNINGS DETAILS (NON-BLOCKING):
+  * 10.csv: ['Sample length is 249 (expected 250).']
+  * 11.csv: ['Sample length is 249 (expected 250).']
+  * 12.csv: ['Sample length is 249 (expected 250).']
+  * 13.csv: ['Sample length is 249 (expected 250).']
+  * 14.csv: ['Sample length is 249 (expected 250).']
+  * 15.csv: ['Sample length is 249 (expected 250).']
+  * 17.csv: ['Sample length is 249 (expected 250).']
+  * 18.csv: ['Sample length is 249 (expected 250).']
+  * 2.csv: ['Sample length is 249 (expected 250).']
+  * 20.csv: ['Sample length is 249 (expected 250).']
+  ... and 35 more files with warnings (e.g. 249 vs 250 length).
+================================================================================

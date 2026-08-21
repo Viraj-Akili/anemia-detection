@@ -1,0 +1,35 @@
+# --- Secrets / env ----------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.template
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# --- Data (never commit downloaded datasets) ----------------------------------
+data/raw/
+data/processed/
+
+# --- Models ------------------------------------------------------------------
+!models/.gitkeep
+!models/*.joblib
+!models/*.pth
+!models/*.json
+
+# --- Downloaded helper binaries (7-Zip bootstrap, etc.) ------------------------
+scripts/tools/
+
+# --- Notebooks / caches / IDE --------------------------------------------------
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.vscode/
+.idea/
+.DS_Store

@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Inter, sans-serif;
+    --bg-page: #fbfbfd;
+    --bg-surface: #ffffff;
+    --bg-secondary: #f5f5f7;
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --text-tertiary: #6e6e73;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-hairline: rgba(0, 0, 0, 0.12);
+    --accent-clinical: #00776b;
+    --accent-clinical-hover: #006359;
+    --accent-blue: #0071e3;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+}
+
+/* Apple-style typography utilities */
+.tracking-display {
+  letter-spacing: -0.035em;
+}
+
+.tracking-title {
+  letter-spacing: -0.025em;
+}
+
+.tracking-subhead {
+  letter-spacing: -0.015em;
+}
+
+/* Apple translucent chrome navigation */
+.apple-glass {
+  background: rgba(251, 251, 253, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.apple-glass-dark {
+  background: rgba(22, 22, 23, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tactile button physics */
+.apple-btn-primary {
+  background-color: #1d1d1f;
+  color: #ffffff;
+  border-radius: 980px;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-btn-primary:hover {
+  background-color: #333336;
+  transform: scale(1.015);
+}
+
+.apple-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.apple-btn-accent {
+  background-color: #00776b;
+  color: #ffffff;
+  border-radius: 980px;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-btn-accent:hover {
+  background-color: #006359;
+  transform: scale(1.015);
+}
+
+.apple-btn-accent:active {
+  transform: scale(0.97);
+}
+
+.apple-btn-secondary {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #1d1d1f;
+  border-radius: 980px;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.apple-btn-secondary:active {
+  transform: scale(0.97);
+}
+
+/* Device frame styling */
+.iphone-frame {
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.08), 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.iphone-frame-dark {
+  box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Camera scanline indicator */
+@keyframes subtleScan {
+  0% {
+    top: 15%;
+    opacity: 0.3;
+  }
+  50% {
+    top: 85%;
+    opacity: 0.8;
+  }
+  100% {
+    top: 15%;
+    opacity: 0.3;
+  }
+}
+
+.animate-scanline {
+  animation: subtleScan 3.5s infinite ease-in-out;
+}
+
+/* High-resolution pulse for clinical ROI */
+@keyframes clinicalTargetPulse {
+  0% {
+    border-color: rgba(0, 119, 107, 0.4);
+    box-shadow: 0 0 0 0 rgba(0, 119, 107, 0.2);
+  }
+  50% {
+    border-color: rgba(0, 119, 107, 0.95);
+    box-shadow: 0 0 0 8px rgba(0, 119, 107, 0);
+  }
+  100% {
+    border-color: rgba(0, 119, 107, 0.4);
+    box-shadow: 0 0 0 0 rgba(0, 119, 107, 0);
+  }
+}
+
+.clinical-roi-pulse {
+  animation: clinicalTargetPulse 2.5s infinite ease-in-out;
+}
+
+/* Clean minimal scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}

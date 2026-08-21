@@ -1,0 +1,75 @@
+feature_name,category,mean,std,min,max,missing_count,is_constant
+age,Demographic,42.8676,13.5194,18.0,64.0,0,False
+gender_encoded,Demographic,0.4412,0.5002,0.0,1.0,0,False
+red_mean,Time-Domain Statistics,0.0,0.0,0.0,0.0,0,True
+red_std,Time-Domain Statistics,1.0,0.0,1.0,1.0,0,True
+red_var,Time-Domain Statistics,1.0,0.0,1.0,1.0,0,True
+red_rms,Time-Domain Statistics,1.0,0.0,1.0,1.0,0,True
+red_min,Time-Domain Statistics,-2.0446,0.3937,-3.4584,-1.4397,0,False
+red_max,Time-Domain Statistics,2.19,0.4563,1.5328,3.9398,0,False
+red_range,Time-Domain Statistics,4.2345,0.7095,3.4185,7.0795,0,False
+red_median,Time-Domain Statistics,-0.04,0.1082,-0.2867,0.2198,0,False
+red_q25,Time-Domain Statistics,-0.7885,0.1029,-0.9428,-0.4959,0,False
+red_q75,Time-Domain Statistics,0.8004,0.0788,0.5307,0.9458,0,False
+red_iqr,Time-Domain Statistics,1.589,0.1666,1.133,1.836,0,False
+red_skewness,Time-Domain Statistics,0.0633,0.2722,-0.7018,0.6734,0,False
+red_kurtosis,Time-Domain Statistics,-0.7934,0.5873,-1.276,1.9607,0,False
+red_zero_crossing_rate,Time-Domain Statistics,0.1126,0.0198,0.0726,0.1694,0,False
+ir_mean,Time-Domain Statistics,0.0,0.0,-0.0,-0.0,0,True
+ir_std,Time-Domain Statistics,1.0,0.0,1.0,1.0,0,True
+ir_var,Time-Domain Statistics,1.0,0.0,1.0,1.0,0,True
+ir_rms,Time-Domain Statistics,1.0,0.0,1.0,1.0,0,True
+ir_min,Time-Domain Statistics,-2.1121,0.4234,-3.5173,-1.4743,0,False
+ir_max,Time-Domain Statistics,2.2354,0.4763,1.6102,4.127,0,False
+ir_range,Time-Domain Statistics,4.3475,0.7436,3.4914,7.3548,0,False
+ir_median,Time-Domain Statistics,-0.0406,0.1202,-0.3259,0.208,0,False
+ir_q25,Time-Domain Statistics,-0.7867,0.1001,-0.9357,-0.4493,0,False
+ir_q75,Time-Domain Statistics,0.7833,0.0859,0.4419,0.9096,0,False
+ir_iqr,Time-Domain Statistics,1.57,0.1722,0.8912,1.8147,0,False
+ir_skewness,Time-Domain Statistics,0.0605,0.2879,-0.6882,0.6805,0,False
+ir_kurtosis,Time-Domain Statistics,-0.7094,0.6875,-1.2812,2.8024,0,False
+ir_zero_crossing_rate,Time-Domain Statistics,0.1124,0.02,0.0726,0.1694,0,False
+red_n_pulses,Pulse Morphology,13.4706,2.4463,9.0,21.0,0,False
+red_mean_pulse_interval_sec,Pulse Morphology,0.7466,0.1328,0.468,1.085,0,False
+red_pulse_rate_bpm,Pulse Morphology,82.8869,14.7609,55.3,128.21,0,False
+red_pulse_amplitude_mean,Pulse Morphology,1.5538,0.1528,1.1743,1.9105,0,False
+red_pulse_amplitude_std,Pulse Morphology,0.323,0.2092,0.0767,1.0687,0,False
+red_pulse_interval_std,Pulse Morphology,0.0542,0.078,0.014,0.4427,0,False
+ir_n_pulses,Pulse Morphology,13.4559,2.4338,8.0,21.0,0,False
+ir_mean_pulse_interval_sec,Pulse Morphology,0.7472,0.1365,0.468,1.2571,0,False
+ir_pulse_rate_bpm,Pulse Morphology,82.8212,14.5235,47.73,128.21,0,False
+ir_pulse_amplitude_mean,Pulse Morphology,1.5312,0.1636,1.1589,1.889,0,False
+ir_pulse_amplitude_std,Pulse Morphology,0.3613,0.2231,0.0927,1.2088,0,False
+ir_pulse_interval_std,Pulse Morphology,0.063,0.0821,0.0169,0.4658,0,False
+red_fft_dominant_freq_hz,Frequency-Domain (FFT),1.3566,0.2803,0.602,2.108,0,False
+red_fft_dominant_freq_magnitude,Frequency-Domain (FFT),123.3681,22.9687,62.0718,161.8457,0,False
+red_fft_dominant_freq_bpm,Frequency-Domain (FFT),81.3912,16.8198,36.1,126.5,0,False
+red_fft_total_spectral_power,Frequency-Domain (FFT),31084.8961,118.9274,31000.5,31250.0783,0,False
+red_fft_cardiac_band_power,Frequency-Domain (FFT),30707.6807,475.6908,28919.8916,31187.2152,0,False
+red_fft_cardiac_power_ratio,Frequency-Domain (FFT),0.9879,0.0144,0.9329,0.9992,0,False
+red_fft_spectral_centroid,Frequency-Domain (FFT),1.5731,0.2764,1.0,2.353,0,False
+red_fft_spectral_bandwidth,Frequency-Domain (FFT),0.6587,0.1484,0.401,0.973,0,False
+red_fft_spectral_entropy,Frequency-Domain (FFT),0.3847,0.1022,0.1587,0.6458,0,False
+red_fft_peak_to_total_power_ratio,Frequency-Domain (FFT),0.5064,0.1765,0.1243,0.845,0,False
+ir_fft_dominant_freq_hz,Frequency-Domain (FFT),1.3566,0.2803,0.602,2.108,0,False
+ir_fft_dominant_freq_magnitude,Frequency-Domain (FFT),121.3941,23.4159,63.1212,160.7898,0,False
+ir_fft_dominant_freq_bpm,Frequency-Domain (FFT),81.3912,16.8219,36.1,126.5,0,False
+ir_fft_total_spectral_power,Frequency-Domain (FFT),31084.8956,118.9266,31000.5,31250.0576,0,False
+ir_fft_cardiac_band_power,Frequency-Domain (FFT),30636.7113,528.7912,28813.7189,31168.3983,0,False
+ir_fft_cardiac_power_ratio,Frequency-Domain (FFT),0.9856,0.0163,0.9295,0.9995,0,False
+ir_fft_spectral_centroid,Frequency-Domain (FFT),1.5587,0.2816,0.925,2.357,0,False
+ir_fft_spectral_bandwidth,Frequency-Domain (FFT),0.6706,0.1426,0.435,0.997,0,False
+ir_fft_spectral_entropy,Frequency-Domain (FFT),0.3983,0.1011,0.1656,0.6607,0,False
+ir_fft_peak_to_total_power_ratio,Frequency-Domain (FFT),0.4916,0.1775,0.1285,0.834,0,False
+red_ir_pearson_corr,Cross-Channel & Optical Ratios,0.9585,0.0248,0.8684,0.9858,0,False
+red_ir_amplitude_ratio,Cross-Channel & Optical Ratios,1.0,0.0,1.0,1.0,0,True
+red_raw_dc,Cross-Channel & Optical Ratios,102167.9696,13323.6874,73115.58,132534.0,0,False
+red_raw_ac,Cross-Channel & Optical Ratios,530.7849,255.501,68.416,1125.7608,0,False
+red_ac_dc_ratio,Cross-Channel & Optical Ratios,0.0054,0.0028,0.0007,0.0128,0,False
+ir_raw_dc,Cross-Channel & Optical Ratios,89340.5107,13881.9528,62943.61,114428.45,0,False
+ir_raw_ac,Cross-Channel & Optical Ratios,246.4948,123.7434,21.7127,593.4805,0,False
+ir_ac_dc_ratio,Cross-Channel & Optical Ratios,0.0028,0.0015,0.0003,0.0082,0,False
+ratio_of_ratios,Cross-Channel & Optical Ratios,1.961,0.5313,0.7748,3.5507,0,False
+clean_red_ir_ratio_mean,Cross-Channel & Optical Ratios,0.9791,0.5272,-0.912,3.1037,0,False
+clean_red_ir_ratio_std,Cross-Channel & Optical Ratios,6.0311,6.6098,0.8241,34.5491,0,False
+red_ir_peak_lag_samples,Cross-Channel & Optical Ratios,0.7941,0.4074,0.0,1.0,0,False

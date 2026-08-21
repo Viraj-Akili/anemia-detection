@@ -1,0 +1,17 @@
+{
+  "operating_threshold": {
+    "anemia": 0.12613831460475922,
+    "nutrition": 0.02312149852514267
+  },
+  "platt_scaling": {
+    "anemia": {
+      "coef": 6.280302047729492,
+      "intercept": -3.1826157569885254
+    },
+    "nutrition": {
+      "coef": 8.259976387023926,
+      "intercept": -4.058722972869873
+    }
+  },
+  "min_specificity_constraint": 0.6
+}
